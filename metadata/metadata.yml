@@ -1,0 +1,24 @@
+metadata_version: 1
+name: Learning to Solve the Rubiks Cube
+description: |-
+  This is the code to replicate the results of our submission to Nature Machine Intelligence titled &#34;Learning to Solve the Rubik&#39;s Cube.&#34;
+
+  The run file will run a quick version of parallel weighted A* search on the Rubik&#39;s Cube, 15-puzzle, and 24-puzzle and display the results. It will also display the precomputed results from the paper.  Directions for how to run the longer version, whose results are shown in the paper, are displayed to the console and can also be found in the run.sh file.
+
+  Directions for how to train the models from scratch are shown in the README file.
+authors:
+- name: Forest Agostinelli
+  affiliations:
+  - name: University of California, Irvine
+- name: Stephen McAleer
+  affiliations:
+  - name: University of California, Irvine
+- name: Alexander Smakov
+  affiliations:
+  - name: University of California, Irvine
+- name: Pierre Baldi
+  affiliations:
+  - name: University of California, Irvine
+corresponding_contributor:
+  name: Pierre Baldi
+  email: pfbaldi@ics.uci.edu

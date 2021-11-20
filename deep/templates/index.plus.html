@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Deep Cube Plus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+
+    <!-- Bootstrap -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/main.css">
+
+    <!--[if lt IE 9]>
+          <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+          <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <![endif]-->
+
+
+    <script src="/static/jquery.min.js"></script>
+    <script src="/static/main.plus.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <center>
+            <h1>Solve the Rubik's Cube Using Deep Learning</h1>
+            <div id="program_container" class="container">
+                <div id="solution_container" class="container">
+                    <button disabled id="first_state" type="button">&#060;&#060;</button>
+                    <button disabled id="prev_state" type="button">&#060;</button>
+                    <button disabled id="next_state" type="button">&#062;</button>
+                    <button disabled id="last_state" type="button">&#062;&#062;</button>
+                    <h4 id="solution_text">Solution:</h4>
+                </div>
+
+                <div id="cube_div" class="container" style="padding: 60px">
+                <section class="cube_container">
+                    <div id="cube">
+                        <figure id="front" class="front">
+                        </figure>
+                        <figure id="back" class="back">
+                        </figure>
+                        <figure id="right" class="right">
+                        </figure>
+                        <figure id="left" class="left">
+                        </figure>
+                        <figure id="top" class="top">
+                        </figure>
+                        <figure id="bottom" class="bottom">
+                        </figure>
+                    </div>
+                </section>
+            </div>
+
+                <br>
+
+                <div id="button_container" class="container">
+                    <button disabled id="U1" type="button" onclick="singleRotation(this.id)">U</button>
+                    <button disabled id="D1" type="button" onclick="singleRotation(this.id)">D</button>
+                    <button disabled id="L1" type="button" onclick="singleRotation(this.id)">L</button>
+                    <button disabled id="R1" type="button" onclick="singleRotation(this.id)">R</button>
+                    <button disabled id="F1" type="button" onclick="singleRotation(this.id)">F</button>
+                    <button disabled id="B1" type="button" onclick="singleRotation(this.id)">B</button>
+                    <button disabled id="U2" type="button" onclick="singleRotation(this.id)">U'</button>
+                    <button disabled id="D2" type="button" onclick="singleRotation(this.id)">D'</button>
+                    <button disabled id="L2" type="button" onclick="singleRotation(this.id)">L'</button>
+                    <button disabled id="R2" type="button" onclick="singleRotation(this.id)">R'</button>
+                    <button disabled id="F2" type="button" onclick="singleRotation(this.id)">F'</button>
+                    <button disabled id="B2" type="button" onclick="singleRotation(this.id)">B'</button>
+
+                    <button disabled id="scramble" type="button">Scramble</button>
+                    <button disabled id="solve" type="button">Solve!</button><br /><br />
+
+                    input: <input disabled id="input" type="text" style="width:400px">
+                    <button disabled id="rotation" type="button" onclick="rotation()">Rotation</button>
+                    <button disabled id="initcube" type="button" onclick="initCube()">InitCube</button><br />
+                </div>
+            </div>
+        </center>
+
+        <center>
+            <div style="padding-top:60px">
+                <button disabled id="redButton" style="background-color: red;width: 40px;height: 40px" onclick="colorSelect(this)"></button>
+                <button disabled id="yellowButton" style="background-color: yellow;width: 40px;height: 40px" onclick="colorSelect(this)"></button>
+                <button disabled id="orangeButton" style="background-color: orange;width: 40px;height: 40px" onclick="colorSelect(this)"></button>
+                <button disabled id="greenButton" style="background-color: green;width: 40px;height: 40px" onclick="colorSelect(this)"></button>
+                <button disabled id="whiteButton" style="background-color: white;width: 40px;height: 40px" onclick="colorSelect(this)"></button>
+                <button disabled id="blueButton" style="background-color: blue;width: 40px;height: 40px" onclick="colorSelect(this)"></button>
+                <button disabled id="cancelButton" style="background-color: grey;width: 40px;height: 40px" onclick="colorSelect(this)"></button>
+            </div>
+
+            <div style="height: 20px"></div>
+
+            <table>
+                <tr>
+                    <td></td>
+                    <td style="width: 3px"></td>
+                    <td>
+                        <div>
+                            <button disabled style="background-color: white;width: 40px;height: 40px" id="stickers_0" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: white;width: 40px;height: 40px" id="stickers_1" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: white;width: 40px;height: 40px" id="stickers_2" onclick="colorSet(this)"></button>
+                        </div>
+                        <div>
+                            <button disabled style="background-color: white;width: 40px;height: 40px" id="stickers_3" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: white;width: 40px;height: 40px" id="stickers_4" onclick=""></button>
+                            <button disabled style="background-color: white;width: 40px;height: 40px" id="stickers_5" onclick="colorSet(this)"></button>
+                        </div>
+                        <div>
+                            <button disabled style="background-color: white;width: 40px;height: 40px" id="stickers_6" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: white;width: 40px;height: 40px" id="stickers_7" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: white;width: 40px;height: 40px" id="stickers_8" onclick="colorSet(this)"></button>
+                        </div>
+                    </td>
+                    <td style="width: 3px"></td>
+                    <td></td>
+                    <td style="width: 3px"></td>
+                    <td></td>
+                </tr>
+                <tr style="height: 3px"></tr>
+                <tr>
+                    <td>
+                        <div>
+                            <button disabled style="background-color: orange;width: 40px;height: 40px" id="stickers_18" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: orange;width: 40px;height: 40px" id="stickers_19" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: orange;width: 40px;height: 40px" id="stickers_20" onclick="colorSet(this)"></button>
+                        </div>
+                        <div>
+                            <button disabled style="background-color: orange;width: 40px;height: 40px" id="stickers_21" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: orange;width: 40px;height: 40px" id="stickers_22" onclick=""></button>
+                            <button disabled style="background-color: orange;width: 40px;height: 40px" id="stickers_23" onclick="colorSet(this)"></button>
+                        </div>
+                        <div>
+                            <button disabled style="background-color: orange;width: 40px;height: 40px" id="stickers_24" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: orange;width: 40px;height: 40px" id="stickers_25" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: orange;width: 40px;height: 40px" id="stickers_26" onclick="colorSet(this)"></button>
+                        </div>
+                    </td>
+                    <td style="width: 3px"></td>
+                    <td>
+                        <div>
+                            <button disabled style="background-color: green;width: 40px;height: 40px" id="stickers_45" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: green;width: 40px;height: 40px" id="stickers_46" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: green;width: 40px;height: 40px" id="stickers_47" onclick="colorSet(this)"></button>
+                        </div>
+                        <div>
+                            <button disabled style="background-color: green;width: 40px;height: 40px" id="stickers_48" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: green;width: 40px;height: 40px" id="stickers_49" onclick=""></button>
+                            <button disabled style="background-color: green;width: 40px;height: 40px" id="stickers_50" onclick="colorSet(this)"></button>
+                        </div>
+                        <div>
+                            <button disabled style="background-color: green;width: 40px;height: 40px" id="stickers_51" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: green;width: 40px;height: 40px" id="stickers_52" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: green;width: 40px;height: 40px" id="stickers_53" onclick="colorSet(this)"></button>
+                        </div>
+                    </td>
+                    <td style="width: 3px"></td>
+                    <td>
+                        <div>
+                            <button disabled style="background-color: red;width: 40px;height: 40px" id="stickers_27" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: red;width: 40px;height: 40px" id="stickers_28" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: red;width: 40px;height: 40px" id="stickers_29" onclick="colorSet(this)"></button>
+                        </div>
+                        <div>
+                            <button disabled style="background-color: red;width: 40px;height: 40px" id="stickers_30" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: red;width: 40px;height: 40px" id="stickers_31" onclick=""></button>
+                            <button disabled style="background-color: red;width: 40px;height: 40px" id="stickers_32" onclick="colorSet(this)"></button>
+                        </div>
+                        <div>
+                            <button disabled style="background-color: red;width: 40px;height: 40px" id="stickers_33" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: red;width: 40px;height: 40px" id="stickers_34" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: red;width: 40px;height: 40px" id="stickers_35" onclick="colorSet(this)"></button>
+                        </div>
+                    </td>
+                    <td style="width: 3px"></td>
+                    <td>
+                        <div>
+                            <button disabled style="background-color: blue;width: 40px;height: 40px" id="stickers_44" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: blue;width: 40px;height: 40px" id="stickers_43" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: blue;width: 40px;height: 40px" id="stickers_42" onclick="colorSet(this)"></button>
+                        </div>
+                        <div>
+                            <button disabled style="background-color: blue;width: 40px;height: 40px" id="stickers_41" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: blue;width: 40px;height: 40px" id="stickers_40" onclick=""></button>
+                            <button disabled style="background-color: blue;width: 40px;height: 40px" id="stickers_39" onclick="colorSet(this)"></button>
+                        </div>
+                        <div>
+                            <button disabled style="background-color: blue;width: 40px;height: 40px" id="stickers_38" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: blue;width: 40px;height: 40px" id="stickers_37" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: blue;width: 40px;height: 40px" id="stickers_36" onclick="colorSet(this)"></button>
+                        </div>
+                    </td>
+                </tr>
+                <tr style="height: 3px"></tr>
+                <tr>
+                    <td></td>
+                    <td style="width: 3px"></td>
+                    <td>
+                        <div>
+                            <button disabled style="background-color: yellow;width: 40px;height: 40px" id="stickers_9" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: yellow;width: 40px;height: 40px" id="stickers_10" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: yellow;width: 40px;height: 40px" id="stickers_11" onclick="colorSet(this)"></button>
+                        </div>
+                        <div>
+                            <button disabled style="background-color: yellow;width: 40px;height: 40px" id="stickers_12" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: yellow;width: 40px;height: 40px" id="stickers_13" onclick=""></button>
+                            <button disabled style="background-color: yellow;width: 40px;height: 40px" id="stickers_14" onclick="colorSet(this)"></button>
+                        </div>
+                        <div>
+                            <button disabled style="background-color: yellow;width: 40px;height: 40px" id="stickers_15" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: yellow;width: 40px;height: 40px" id="stickers_16" onclick="colorSet(this)"></button>
+                            <button disabled style="background-color: yellow;width: 40px;height: 40px" id="stickers_17" onclick="colorSet(this)"></button>
+                        </div>
+                    </td>
+                    <td style="width: 3px"></td>
+                    <td></td>
+                    <td style="width: 3px"></td>
+                    <td></td>
+                </tr>
+            </table>
+        </center>
+    </div>
+    <br>
+    <center>
+	    <h4>Use the mouse to turn the cube. &#13;&#10;</h4>
+        <h4>
+            Turn the faces with the U/D/L/R/B/F keys.
+            Hold shift to turn faces couter-clockwise.
+        </h4>
+        <h4>
+            Press scramble to randomly scramble the cube.
+            Press solve to solve the cube using deep learning!
+        </h4>
+    </center>
+
+    <br>
+    <div class="well well-lg">
+        <center>
+        <a href="https://codeocean.com/capsule/5723040/">Source Code</a>
+        <br>
+        <br>
+        <span style='color:black'>If you find this research useful to your work, please cite the following papers:</span><br><br>
+
+        <span class="paper-title"><a href="https://www.nature.com/articles/s42256-019-0070-z.epdf?shared_access_token=-pCSsZa_J9bM8VyXLZLRctRgN0jAjWel9jnR3ZoTv0Osb8UCgUm5AQaSCMHWqWzsyV3KBcb13SAW-9IL1pAGd1HcSk40JSEjhoaBAi0ePvYh_5Dul6LvK0oJY1KI0ULo9O9HCut_y7aCTc93Th8m5g%3D%3D">Solving the Rubik's Cube with Deep Reinforcement Learning and Search</a></span><br>
+        <span class="paper-authors">Forest Agostinelli*, Stephen McAleer*, Alexander Shmakov*, Pierre Baldi</span><br>
+        <span class="paper-journal"><i>Nature Machine Intelligence</i>, Volume 1</span>,
+        <span class="paper-year">2019</span>
+        <br>
+        <br>
+        <span class="paper-title"><a href="https://openreview.net/pdf?id=Hyfn2jCcKm">Solving the Rubik's Cube with Approximate Policy Iteration</a></span><br>
+        <span class="paper-authors">Stephen McAleer*, Forest Agostinelli*, Alexander Shmakov*, Pierre Baldi</span><br>
+        <span class="paper-journal"><i>In Proceedings of the 7th International Conference on Learning Representations (ICLR)</i></span>,
+        <span class="paper-year">2019</span>
+        </center>
+    </div>
+
+
+</body>
+</html>
