@@ -125,3 +125,20 @@ deep$ python manage.py runserver 0.0.0.0:8000 # 映射到8000端口
 ![SolvePlus](pic/8.PNG)
 
 如之前所述，依旧能够通过魔方上的左右进行过程的查看。
+
+
+## 4. 其他
+
+Ubuntu下的换源推荐
+https://xiaopengzhen.blog.csdn.net/article/details/102953882
+
+运行项目以前下载django
+pip install django==1.11 -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+使用Ubuntu原装python2.7，导入项目依赖之前需要安装pip，直接安装python-pip可能出现invalid syntax问题，解决方法：安装新版本pip
+wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
+python get-pip.py
+
+运行项目时，提示please install the python-tk package，如果没有换国内源，在sudo apt install python时会出现have unmet dependencies问题
+
+在虚拟机中push需要git clone时用git地址而非https地址，否则可能出现connection refused问题
