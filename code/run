@@ -1,0 +1,81 @@
+#!/usr/bin/env bash
+set -ex
+
+#cd ml_utils/
+#make
+#cd ../
+
+export CUDA_VISIBLE_DEVICES="0"
+
+###----------------------------------------------------------------------------###
+echo "----Running DeepCubeA on 100 stataes of Rubik's Cube data----";
+echo "----Hyperparameters for weighted A* search are N=100 and \lambda=0.2----";
+echo "----For results in the paper use --nnet_parallel 10000 --depth_penalty 0.6 --startIdx 0 (will take many hours to complete)----"; echo
+sleep 5
+
+python scripts/solveStartingStates.py --input ../data/cube3/states.pkl --env cube3 --methods nnet --model_loc savedModels/cube3/1/ --nnet_parallel 100 --depth_penalty 0.2 --startIdx 900
+
+echo "Results for Rubik's Cube with precomputed N=10000 and \lambda=0.6"
+python extra/compareSolns.py --soln1 testData/cube3/states_nnetPar200_depthP0.1_bfs0_optimal_solved.pkl --soln2 testData/cube3/states_nnetPar10000_depthP0.6_bfs0_nnet_solved.pkl
+sleep 5
+
+
+###----------------------------------------------------------------------------###
+echo "----Running DeepCubeA on 100 states of 15-puzzle data----";
+echo "----Hyperparameters for weighted A* search are N=100 and \lambda=0.2----";
+echo "----For results in the paper use --nnet_parallel 20000 --depth_penalty 0.8 --startIdx 0 (will take many hours to complete)----"; echo
+
+
+sleep 5
+
+python scripts/solveStartingStates.py --input ../data/puzzle15/states.pkl --env puzzle15 --methods nnet --model_loc savedModels/puzzle15/1/ --nnet_parallel 100 --depth_penalty 0.2 --startIdx 400
+
+echo "Results for 15-puzzle with precomputed N=20000 and \lambda=0.8"
+python extra/compareSolns.py --soln1 testData/puzzle15/states_nnetPar200_depthP0.2_bfs0_optimal_solved.pkl --soln2 testData/puzzle15/states_nnetPar10000_depthP0.8_bfs0_nnet_solved.pkl
+sleep 5
+
+
+###----------------------------------------------------------------------------###
+echo "----Running DeepCubeA on 24-puzzle data----";
+echo "----Hyperparameters for weighted A* search are N=100 and \lambda=0.4----";
+echo "----For results in the paper use --nnet_parallel 20000 --depth_penalty 0.8 --startIdx 0 (will take many hours to complete)----"; echo
+sleep 5
+
+python scripts/solveStartingStates.py --input ../data/puzzle24/states.pkl --env puzzle24 --methods nnet --model_loc savedModels/puzzle24/1/ --nnet_parallel 100 --depth_penalty 0.4 --startIdx 400
+
+echo "Results for 24-puzzle with precomputed N=20000 and \lambda=0.8"
+python extra/compareSolns.py --soln1 testData/puzzle24/states_nnetPar200_depthP0.1_bfs0_optimal_solved.pkl --soln2 testData/puzzle24/states_nnetPar10000_depthP0.8_bfs0_nnet_solved.pkl
+sleep 5
+
+###----------------------------------------------------------------------------###
+echo "----Running DeepCubeA on 50 states of 35-puzzle data----";
+echo "----Hyperparameters for weighted A* search are N=100 and \lambda=0.4----";
+echo "----For results in the paper use --nnet_parallel 20000 --depth_penalty 0.8 --startIdx 0 (will take many hours to complete)----"; echo
+sleep 5
+
+python scripts/solveStartingStates.py --input ../data/puzzle35/states.pkl --env puzzle35 --methods nnet --model_loc savedModels/puzzle35/1/ --nnet_parallel 100 --depth_penalty 0.4 --startIdx 450
+
+###----------------------------------------------------------------------------###
+echo "----Running DeepCubeA on 50 states of 48-puzzle data----";
+echo "----Hyperparameters for weighted A* search are N=100 and \lambda=0.2----";
+echo "----For results in the paper use --nnet_parallel 20000 --depth_penalty 0.6 --startIdx 0 (will take many hours to complete)----"; echo
+sleep 5
+
+python scripts/solveStartingStates.py --input ../data/puzzle48/states.pkl --env puzzle48 --methods nnet --model_loc savedModels/puzzle48/1/ --nnet_parallel 100 --depth_penalty 0.2 --startIdx 450
+
+
+###----------------------------------------------------------------------------###
+echo "----Running DeepCubeA on 50 states of lightsout7 data----";
+echo "----Hyperparameters for weighted A* search are N=100 and \lambda=0.2----";
+echo "----For results in the paper use --nnet_parallel 10000 --depth_penalty 0.8 --startIdx 0 (will take many hours to complete)----"; echo
+sleep 5
+
+python scripts/solveStartingStates.py --input ../data/lightsout7/states.pkl --env lightsout7 --methods nnet --model_loc savedModels/lightsout7/1/ --nnet_parallel 100 --depth_penalty 0.2 --startIdx 450
+
+###----------------------------------------------------------------------------###
+echo "----Running DeepCubeA on 20 states of Sokoban data----";
+echo "----Hyperparameters for weighted A* search are N=1 and \lambda=0.8----"; 
+echo "----For results in the paper use --nnet_parallel 1 --depth_penalty 0.8 --startIdx 0"; echo
+sleep 5
+
+python scripts/solveStartingStates.py --input ../data/sokoban/states.pkl --env sokoban --methods nnet --model_loc savedModels/sokoban/1/ --nnet_parallel 1 --depth_penalty 0.8 --startIdx 980
