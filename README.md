@@ -19,6 +19,7 @@ Refer to https://gitee.com/nwu_hq/cube
 
 ```bash
 cube$ pip install -r requirement.txt
+cube$ sudo apt-get install python-tk
 ```
 
 此过程需要较长时间，建议使用tsinghua镜像库加快下载速度。
