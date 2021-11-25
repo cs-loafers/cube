@@ -36,14 +36,14 @@ ubuntu使用命令 gedit/vim ~/.condarc 编辑镜像即可,或者直接复制粘
 
 ```bash
 cube$ cd deep 
-deep$ python manage.py runserver 0.0.0.0:8080 # 映射到8000端口
+deep$ python manage.py runserver 0.0.0.0:8000 # 映射到8000端口
 ```
 
 在运行后就能看到以下命令行输出。
 
 ![初始化运行](pic/1.PNG)
 
-在本地浏览器中，我们输入网址：**localhost:8080/index**，由于在 *urls.py*中没有加入对于 **/** 的映射，所以无法使用 **localhost:8080/** 访问，此网站将显示404错误。
+在本地浏览器中，我们输入网址：**localhost:8000/index**，由于在 *urls.py*中没有加入对于 **/** 的映射，所以无法使用 **localhost:8000/** 访问，此网站将显示404错误。
 
 我们就能看到魔方的界面，此界面魔方是一个已经复原的魔方。如下图所示
 
