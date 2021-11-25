@@ -24,6 +24,7 @@ cube$ pip install -r requirement.txt
 此过程需要较长时间，建议使用tsinghua镜像库加快下载速度。
 
 conda镜像文件见根目录下/.condarc文件
+
 ubuntu使用命令 gedit/vim ~/.condarc 编辑镜像即可,或者直接复制粘贴也可
 
 
