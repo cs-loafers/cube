@@ -18,7 +18,7 @@ Refer to https://gitee.com/nwu_hq/cube
 本项目已经基于*Django*框架创建了基本的文件。在项目的根目录下有一个requirements.txt文件，里面保存了项目所需要的运行依赖库。使用以下命令完整依赖的导入。
 
 ```bash
-cube$ pip install -r requirement.txt
+cube$ pip install -r requirements.txt
 cube$ sudo apt-get install python-tk
 ```
 
