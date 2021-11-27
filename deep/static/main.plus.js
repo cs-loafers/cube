@@ -170,9 +170,10 @@ function addButtonTimeStateShow(newBottonId){
   setStickerColors(saveStatexxx[newBottonId-10000]);
 }
 function addButtonTimeState(){
-  alert("1");
+  // alert("1");
   saveStatexxx[Number(indexNewBotton)-10000] = state;
   var o=document.createElement("input"); 
+  // var o=document.createElement("button"); 
   o.id=indexNewBotton;
 
   o.type = "button" ; 

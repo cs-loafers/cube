@@ -34,9 +34,11 @@
                     <button disabled id="prev_state" type="button">&#060;</button>
                     <button disabled id="next_state" type="button">&#062;</button>
                     <button disabled id="last_state" type="button">&#062;&#062;</button>
-                    <div>
-                        <input type="text" name="" id="fen" value="0" />m
-                        <input type="text" name="" id="miao" value="0" />s
+                   <br /><br/>
+                    <div id="saveStatesolution_container">
+                        <input class="countTime" type="text" name="" id="fen" value="0" />m
+                        <input class="countTime" type="text" name="" id="miao" value="0" />s
+                         <button  id="saveState" type="button" onclick="addButtonTimeState()">保存状态</button><br /><br/>
                         <script type="text/javascript">
                             var a=0;
                             var b=0;
@@ -58,9 +60,9 @@
                             
                         </script>
                     </div>
-                    <div id="saveStatesolution_container">
+                   <!--  <div id="saveStatesolution_container">
                         <button  id="saveState" type="button" onclick="addButtonTimeState()">保存状态</button><br /><br/>
-                    </div>
+                    </div> -->
                     <h4 id="solution_text">Solution:</h4>
                 </div>
 
