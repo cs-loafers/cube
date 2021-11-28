@@ -7,8 +7,15 @@ from django.shortcuts import render, HttpResponse
 
 
 os.environ['CUDA_VISIBLE_DEVICES']='0'  # Add this line to run Python app.py directly. The function of this line is to specify GPU 0
-o_path = os.path.join(os.getcwd(), "..", "code", "scripts")
-sys.path.append(o_path)
+
+o_path = os.getcwd()
+
+# works locally
+sys.path.append(os.path.join(o_path, "..", "code", "scripts"))
+# for travis CI
+sys.path.append(os.path.join(o_path, "code", "scripts"))
+
+
 import nnetSolve
 
 FEToState = [6, 3, 0, 7, 4, 1, 8, 5, 2, 15, 12, 9, 16, 13, 10, 17, 14, 11, 24, 21, 18, 25, 22, 19, 26, 23, 20, 33, 30, 27, 34, 31, 28, 35, 32, 29, 38, 41, 44, 37, 40, 43, 36, 39, 42, 51, 48, 45, 52, 49, 46, 53, 50, 47]
@@ -132,11 +139,6 @@ def color2Status(color):
 
 
 def solve(request):
-    #o_path = os.getcwd()
-    #sys.path.append(o_path)
-    #sys.path.append('../')
-    #sys.path.append('./code/scripts/')
-    #import nnetSolve
     stateUnicode = request.POST.get('state')
     stateStr = stateUnicode.encode('utf-8')
     stateStr = stateStr.replace("[", "")

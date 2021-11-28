@@ -13,6 +13,7 @@ contextlib2==0.6.0.post1
 cycler==0.10.0
 Cython==0.29.14
 decorator==4.4.1
+Django==1.11
 dm-sonnet==1.35
 enum34==1.1.6
 funcsigs==1.0.2

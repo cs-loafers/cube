@@ -6,19 +6,35 @@ import argparse
 import time
 from subprocess import Popen, PIPE
 from multiprocessing import Process, Queue
+
+# works locally
 o_path = os.getcwd()
 sys.path.append(o_path)
-sys.path.append('./')
-sys.path.append('../')
-sys.path.append('../code')
-sys.path.append('../data')
-sys.path.append('./solvers/cube3/')
+sys.path.append(os.path.join(o_path, ".."))
+sys.path.append(os.path.join(o_path, "..", "code"))
+sys.path.append(os.path.join(o_path, "..", "data"))
+sys.path.append(os.path.join(o_path, "solvers", "cube3"))
+sys.path.append(os.path.join(o_path, "..", "code", "ml_utils"))
+
+#add path for travis CI
+sys.path.append(os.path.join(o_path, "code"))
+sys.path.append(os.path.join(o_path, "code", "solvers", "cube3"))
+sys.path.append(os.path.join(o_path, "code", "ml_utils"))
+
+# sys.path.append('./')
+# sys.path.append('../')
+# sys.path.append('../code')
+# /data/ not exist
+# sys.path.append('../data')
+# sys.path.append('./solvers/cube3/')
+# sys.path.append(os.path.abspath(os.path.dirname(os.getcwd())+os.path.sep+".") + '/code/ml_utils/')
+
 from environments import env_utils
 import socket
 import gc
 # from solver_algs import Kociemba
 # from solver_algs import Optimal
-sys.path.append(os.path.abspath(os.path.dirname(os.getcwd())+os.path.sep+".") + '/code/ml_utils/')
+
 import nnet_utils
 import search_utils
 
