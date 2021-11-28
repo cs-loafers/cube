@@ -16,10 +16,10 @@
 		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <![endif]-->
 
-
     <script src="/static/jquery.min.js"></script>
     <script src="/static/main.plus.js"></script>
-
+    
+    
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -27,14 +27,17 @@
 <body>
     <div class="container">
         <center>
+            
+        
             <h1>Solve the Rubik's Cube Using Deep Learning</h1>
+            
             <div id="program_container" class="container">
                 <div id="solution_container" class="container">
                     <button disabled id="first_state" type="button">&#060;&#060;</button>
                     <button disabled id="prev_state" type="button">&#060;</button>
                     <button disabled id="next_state" type="button">&#062;</button>
                     <button disabled id="last_state" type="button">&#062;&#062;</button>
-                    <div>
+                    <!--<div>
                         <input type="text" name="" id="fen" value="0" />m
                         <input type="text" name="" id="miao" value="0" />s
                         <script type="text/javascript">
@@ -57,10 +60,30 @@
                             })()
                             
                         </script>
+                    </div>-->
+                    <div id="saveStatesolution_container">
+                        <div id="count" style="width: 200px;
+                        height: 40px;
+                        font-size: 30px;
+                        text-align: center;
+                        margin: auto;">
+                            <span id="id_H">00</span>
+                            <span id="id_M">00</span>
+                            <span id="id_S">00</span>
+                        </div>
+                        <div id="button_container" class="container">
+                            <button id="btnpause" type="button" style="margin-left:-2.5%;width:32px;height:33px;background: url(/static/pause.png) no-repeat; border:none;"></button>
+                            <button id="btnstart" type="button" style="width:32px;height:33px;background: url(/static/start.png) no-repeat; border:none;" ></button>
+                            <button id="btnstop" type="button" style="width:32px;height:33px;background: url(/static/reset.png) no-repeat; border:none;"></button>
+                            <button id="saveState" type="button" style="width:32px;height:33px;background: url(/static/save.png) no-repeat; border:none;" onclick="addButtonTimeState()" >save</button>
+                        </div>
+                        
                     </div>
+                    <!--
                     <div id="saveStatesolution_container">
                         <button  id="saveState" type="button" onclick="addButtonTimeState()">保存状态</button><br /><br/>
                     </div>
+                    -->
                     <h4 id="solution_text">Solution:</h4>
                 </div>
 
@@ -107,9 +130,11 @@
                     <button disabled id="initcube" type="button" onclick="initCube()">InitCube</button><br />
                 </div>
             </div>
+        
         </center>
 
         <center>
+            
             <div style="padding-top:60px">
                 <button disabled id="redButton" style="background-color: red;width: 40px;height: 40px" onclick="colorSelect(this)"></button>
                 <button disabled id="yellowButton" style="background-color: yellow;width: 40px;height: 40px" onclick="colorSelect(this)"></button>
@@ -249,6 +274,7 @@
                     <td></td>
                 </tr>
             </table>
+            
         </center>
     </div>
     <br>
@@ -284,7 +310,6 @@
         <span class="paper-year">2019</span>
         </center>
     </div>
-
 
 </body>
 </html>
