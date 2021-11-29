@@ -2,7 +2,7 @@
 
 Refer to https://gitee.com/nwu_hq/cube
 
-https://app.travis-ci.com/cs-loafers/cube.svg?branch=main
+[![Build Status](https://app.travis-ci.com/cs-loafers/cube.svg?branch=main)](https://app.travis-ci.com/cs-loafers/cube)
 
 ## 1. 项目环境
 
