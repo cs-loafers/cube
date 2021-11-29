@@ -1,6 +1,8 @@
-# 魔方项目说明
+# 魔方项目
 
 Refer to https://gitee.com/nwu_hq/cube
+
+https://app.travis-ci.com/cs-loafers/cube.svg?branch=main
 
 ## 1. 项目环境
 
