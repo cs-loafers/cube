@@ -4,4 +4,4 @@ python:
 install:
     - pip install -r requirements.txt
 script:
-    python deep/manage.py test
+    bash test.sh
