@@ -21,13 +21,13 @@ sys.path.append(os.path.join(o_path, "code"))
 sys.path.append(os.path.join(o_path, "code", "solvers", "cube3"))
 sys.path.append(os.path.join(o_path, "code", "ml_utils"))
 
-# sys.path.append('./')
-# sys.path.append('../')
-# sys.path.append('../code')
+#sys.path.append('./')
+#sys.path.append('../')
+#sys.path.append('../code')
 # /data/ not exist
-# sys.path.append('../data')
-# sys.path.append('./solvers/cube3/')
-# sys.path.append(os.path.abspath(os.path.dirname(os.getcwd())+os.path.sep+".") + '/code/ml_utils/')
+#sys.path.append('../data')
+#sys.path.append('./solvers/cube3/')
+#sys.path.append(os.path.abspath(os.path.dirname(os.getcwd())+os.path.sep+".") + '/code/ml_utils/')
 
 from environments import env_utils
 import socket
@@ -44,10 +44,11 @@ dataQueues = []
 resQueues = []
 socketName = ''
 
-
 def dataListener(dataQueue, resQueue, gpuNum=None):
     # Environment = env_utils.getEnvironment('cube3')
-    nnet = nnet_utils.loadNnet(os.path.abspath('..')+'/code/savedModels/cube3/1', 'model.meta"', True, Environment, gpuNum=gpuNum)
+    # os.path.abspath('..')+'/code/savedModels/cube3/1'
+    # not a very reliable path
+    nnet = nnet_utils.loadNnet(os.path.join(sys.path[0], "..", "code", "savedModels", "cube3", "1"), 'model.meta"', True, Environment, gpuNum=gpuNum)
     while True:
         data = dataQueue.get()
         nnetResult = nnet(data)

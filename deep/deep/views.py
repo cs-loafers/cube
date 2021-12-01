@@ -1,10 +1,10 @@
+#coding=utf-8
+
 import json
 import os
 import sys
 import numpy as np
 from django.shortcuts import render, HttpResponse
-
-
 
 os.environ['CUDA_VISIBLE_DEVICES']='0'  # Add this line to run Python app.py directly. The function of this line is to specify GPU 0
 
@@ -60,6 +60,7 @@ def index(requests):
 
 
 def index_plus(requests):
+    print(requests)
     return render(requests, 'index.plus.html')
 
 
@@ -68,6 +69,7 @@ def initState(requests):
     return HttpResponse(json.dumps(data))
 
 
+#重排序数组,indecies指定每个位置上的值是arr中的哪个。[8,6,4][2,0,1]->[4,8,6]
 def reOrderArray(arr, indecies):
     temp = []
     for i in range(len(indecies)):
@@ -75,8 +77,10 @@ def reOrderArray(arr, indecies):
         temp.append(arr[index])
     return temp
 
-
+#颜色转状态
+#color:每6个0~5的54位数组
 def color2Status(color):
+	#初始化为54位的0数组
     status = [0] * 54
     for i in range(6):
         status[4 + i * 9] = 4 + i * 9
@@ -122,21 +126,52 @@ def color2Status(color):
             return False
         for i in range(3):
             status[idxArr[i]] = angleStatus[i]
-    # print(status)
     for checkStickers in range(0, 54):
         if checkStickers not in status:
             return False
     return status
 
 
-# def solve(request):
-#     url = 'http://deepcube.igb.uci.edu'
-#     import requests
-#     state = request.POST.get('state')
-#     r = requests.post(url + '/solve', data={'state': state})
-#     key = json.loads(r.text)    # json content
-#     return HttpResponse(json.dumps(key))
-
+#获得当前魔方state,给出解法
+def solve_plus(request):
+    import nnetSolve
+    stateUnicode = request.POST.get('state')
+    stateStr = stateUnicode.encode('utf-8')
+    stateStr = stateStr.replace("[", "")
+    stateStr = stateStr.replace("]", "")
+    stateSpilt = stateStr.split(",")
+    colorArray = []
+    # 取除数,(0~8)//9=0
+    for stickers in stateSpilt:
+        colorArray.append(int(stickers) // 9)
+    stateArray = color2Status(colorArray)
+    # stateStr == stateArray, color2Status用来?
+    if stateArray == False:
+        print("error")
+        data = {'moves': [], 'moves_rev': [], 'solve_text': [], 'state': [], 'error': 1}
+        return data
+    # 根据FEToState的索引重排序并用于solve
+    stateArray2 = reOrderArray(stateArray, FEToState)
+    state = np.array(stateArray2)
+    soln = nnetSolve.solve(state)
+    # 根据solve返回的[['R', -1], ['U', 1],..]解决方案，构造顺序解法moves,moves_rev(moves的倒序),solve_text(页面文本)
+    # moves: ['L_1', 'R_1',..]
+    # solve_text: ['L', 'R',..]
+    moves = []
+    moves_rev = []
+    solve_text = []
+    for step in soln:
+        if step[1] == -1:
+            moves.append(step[0] + "_-1")
+            moves_rev.append(step[0] + "_1")
+            solve_text.append(step[0] + "'")
+        else:
+            moves.append(step[0] + "_1")
+            moves_rev.append(step[0] + "_-1")
+            solve_text.append(step[0])
+    data = {'moves': moves, 'moves_rev': moves_rev, 'solve_text': solve_text, 'state': stateArray, 'error': 0}
+    return HttpResponse(json.dumps(data))
+    
 
 def solve(request):
     stateUnicode = request.POST.get('state')
@@ -164,49 +199,4 @@ def solve(request):
             solve_text.append(step[0])
     data = {'moves': moves, 'moves_rev': moves_rev, 'solve_text': solve_text}
     return HttpResponse(json.dumps(data))
-
-
-def reOrderArray(arr, indecies):
-    temp = []
-    for i in range(len(indecies)):
-        index = indecies[i]
-        temp.append(arr[index])
-    return temp
-
-
-def solve_plus(request):
-    o_path = os.getcwd()
-    sys.path.append(o_path)
-    sys.path.append('../')
-    sys.path.append('./code/scripts/')
-    import nnetSolve
-    stateUnicode = request.POST.get('state')
-    stateStr = stateUnicode.encode('utf-8')
-    stateStr = stateStr.replace("[", "")
-    stateStr = stateStr.replace("]", "")
-    stateSpilt = stateStr.split(",")
-    colorArray = []
-    for stickers in stateSpilt:
-        colorArray.append(int(stickers) // 9)
-    stateArray = color2Status(colorArray)
-    if stateArray == False:
-        print("error")
-        data = {'moves': [], 'moves_rev': [], 'solve_text': [], 'state': [], 'error': 1}
-        return data
-    stateArray2 = reOrderArray(stateArray, FEToState)
-    state = np.array(stateArray2)
-    soln = nnetSolve.solve(state)
-    moves = []
-    moves_rev = []
-    solve_text = []
-    for step in soln:
-        if step[1] == -1:
-            moves.append(step[0] + "_-1")
-            moves_rev.append(step[0] + "_1")
-            solve_text.append(step[0] + "'")
-        else:
-            moves.append(step[0] + "_1")
-            moves_rev.append(step[0] + "_-1")
-            solve_text.append(step[0])
-    data = {'moves': moves, 'moves_rev': moves_rev, 'solve_text': solve_text, 'state': stateArray, 'error': 0}
-    return HttpResponse(json.dumps(data))
+    

@@ -5,6 +5,7 @@ var stateToFE = null;
 var FEToState = null;
 var legalMoves = null;
 
+//当前步骤
 var solveStartState = [];
 var solveMoves = [];
 var solveMoves_rev = [];
@@ -18,6 +19,7 @@ var rotX = -30, rotY = -30;
 
 var moves = [];
 
+
 function reOrderArray(arr,indecies) {
 	var temp = [];
 	for(var i = 0; i < indecies.length; i++) {
@@ -28,13 +30,12 @@ function reOrderArray(arr,indecies) {
 	return temp;
 }
 
-/*
-	Rand int between min (inclusive) and max (exclusive)
-*/
+// 取一min到max的数
 function randInt(min, max) {
 	return Math.floor(Math.random() * (max - min)) + min;
 }
 
+// ?
 function clearCube() {
 	for (i = 0; i < faceNames.length; i++) {
 		var myNode = document.getElementById(faceNames[i]);
@@ -44,6 +45,7 @@ function clearCube() {
 	}
 }
 
+// rbg转颜色
 function translateColors(color) {
 	switch (color) {
 		case "rgb(255, 255, 255)":
@@ -63,6 +65,7 @@ function translateColors(color) {
 	}
 }
 
+// 根据newState设置颜色?
 function setStickerColors(newState) {
 	state = newState;
 	clearCube();
@@ -162,6 +165,7 @@ function setStickerColors(newState) {
 	document.getElementById("stickers_17").style.backgroundColor = translateColors(stickers[53].style.backgroundColor);
 }
 
+// ?
 function buttonPressed(ev) {
 	var face = ''
 	var direction = '1'
@@ -189,7 +193,7 @@ function buttonPressed(ev) {
 	}
 }
 
-
+// 启用前进、后退等四个Scroll按钮
 function enableScroll() {
 	document.getElementById("first_state").disabled=false;
 	document.getElementById("prev_state").disabled=false;
@@ -197,8 +201,10 @@ function enableScroll() {
 	document.getElementById("last_state").disabled=false;
 }
 
+// 禁止前进、后退等四个Scroll按钮
 function disableScroll() {
-	document.getElementById("first_state").blur(); //so keyboard input can work without having to click away from disabled button
+	//so keyboard input can work without having to click away from disabled button
+	document.getElementById("first_state").blur(); 
 	document.getElementById("prev_state").blur();
 	document.getElementById("next_state").blur();
 	document.getElementById("last_state").blur();
@@ -209,9 +215,7 @@ function disableScroll() {
 	document.getElementById("last_state").disabled=true;
 }
 
-/*
-	Clears solution as well as disables scroll
-*/
+// 清除还原解决方案，使Scroll失效
 function clearSoln() {
 	solveIdx = 0;
 	solveStartState = [];
@@ -222,6 +226,7 @@ function clearSoln() {
 	disableScroll();
 }
 
+//？
 function setSolnText(setColor=true) {
 	solution_text_mod = JSON.parse(JSON.stringify(solution_text));
 	if (solveIdx >= 0) {
@@ -234,12 +239,13 @@ function setSolnText(setColor=true) {
 	document.getElementById("solution_text").innerHTML = "Solution: "+ solution_text_mod.join(" ");
 }
 
+// 启用打乱、解决按钮,绑定buttonPressed到keypress事件,启用旋转按钮和涂色按钮的启用
 function enableInput() {
 	document.getElementById("scramble").disabled=false;
 	document.getElementById("solve").disabled=false;
+	
 	$(document).on("keypress", buttonPressed);
 
-	//增加旋转按钮和涂色按钮的启用
 	document.getElementById("U1").disabled = false;
 	document.getElementById("U2").disabled = false;
 	document.getElementById("D1").disabled = false;
@@ -318,12 +324,13 @@ function enableInput() {
 	document.getElementById("stickers_53").disabled = false;
 }
 
+// 禁用打乱、解决按钮,解除绑定,禁用旋转按钮和涂色按钮
 function disableInput() {
 	document.getElementById("scramble").disabled=true;
 	document.getElementById("solve").disabled=true;
+	
 	$(document).off("keypress", buttonPressed);
 
-	//增加旋转按钮和涂色按钮的禁用
 	document.getElementById("U1").disabled = true;
 	document.getElementById("U2").disabled = true;
 	document.getElementById("D1").disabled = true;
@@ -402,6 +409,7 @@ function disableInput() {
 	document.getElementById("stickers_53").disabled = true;
 }
 
+// ?
 function nextState(moveTimeout=0) {
 	if (moves.length > 0) {
 		disableInput();
@@ -574,7 +582,10 @@ function solveCube() {
 		}
 	}
 	var stickers_background = stickers_background_arr.join('');
-	var verify = verify_main(stickers_background); //verify_main是验证魔方的函数 在verify.js里
+	// 对于平面展开图，从左上到右下的颜色简写
+	// stickers_background: ROBGWRYBOBWRGOGWGWRWYYORYGRWROGBOYGOYBBWBWRBGBROYYWOYG
+	console.log(JSON.stringify(state))
+	var verify = verify_main(stickers_background); //verify_main是验证魔方的函数
 	if (verify == 0) {
 		document.getElementById("solution_text").innerHTML = "SOLVING...";
 		$.ajax({
@@ -607,6 +618,10 @@ function solveCube() {
 	}
 }
 
+// DOM就绪时调用
+// 每次刷新时,ajax向initState路由发出请求,获得views的HttpResponse返回数据,用于js
+// initState路由本身也可访问得到数据
+// 关联各项按钮click事件到函数
 $( document ).ready($(function() {
 	disableInput();
 	clearSoln();
@@ -700,7 +715,7 @@ function mouseMoved(ev) {
   $("#cube").css("transform", "translateZ( -100px) rotateX( " + rotX + "deg) rotateY(" + rotY + "deg)");
 }
 
-//增加涂色部分
+// index.plus中点击涂色按钮对应事件,colors数组中某处为1即对应按钮有效
 var colors=[0,0,0,0,0,0];
 var data=["red","yellow","orange","green","white","blue"];
 var colorWordToIdx = {"white": 0, "yellow": 1, "orange": 2, "red": 3, "blue": 4, "green": 5};
@@ -734,6 +749,7 @@ function colorSelect(ele){
 	}
 }
 
+// 对平面图任一方块设置颜色
 function colorSet(ele){
 	var strId = ele.id;
 	var tempStickerIdxArr = strId.split('_');
@@ -749,7 +765,7 @@ function colorSet(ele){
 	}
 }
 
-//增加单个转动按钮
+//转动按钮
 function singleRotation(id){
 	switch (id) {
 		case "U1":
@@ -795,7 +811,7 @@ function singleRotation(id){
 }
 
 
-//增加转动和初始化
+// 转动？？
 function rotation() {
 	var input = document.getElementById("input").value;
 	var input_arr = input.split(/\s+/);
@@ -816,6 +832,7 @@ function rotation() {
 	nextState(0);
 }
 
+// 初始化,和$( document ).ready处重复
 function initCube(){
 	disableInput();
 	clearSoln();
@@ -840,8 +857,9 @@ function initCube(){
 	document.getElementById('input').value = "";
 }
 
-//增加验证模块
-//原verify.js的内容
+// 验证模块
+// 参考: https://github.com/mfeather1/3ColorCube/blob/main/verify.js
+
 "use strict";
 var msgtxt = [];
 var CENTERS = [4, 22, 25, 28, 31, 49];
@@ -867,6 +885,7 @@ function check_blank(c) {
   }
   return(0);
 }
+
 function check_centers(c) {
   var centers = [];
   for (var i=0; i < 6; i++)
@@ -886,6 +905,7 @@ function check_centers(c) {
   }
   return(0);
 }
+
 function check_corners(c) {
   var corners = [];
   for (var i=0; i < 24; i++)
@@ -905,6 +925,7 @@ function check_corners(c) {
   }
   return(0);
 }
+
 function check_edges(c) {
   var edges = [];
   for (var i=0; i < 24; i++)
@@ -924,6 +945,7 @@ function check_edges(c) {
   }
   return(0);
 }
+
 function uniq(s, n, v, f) {
   var stat = 0;
   var p = s[0];
@@ -944,6 +966,7 @@ function uniq(s, n, v, f) {
   }
   return(stat);
 }
+
 function verify_cubestr(s) {
   var check = [];
   // init_conv();
@@ -987,7 +1010,9 @@ function verify_cubestr(s) {
   }
   return(0);
 }
-//原rch.js的内容
+
+// TODO
+//参考: https://github.com/mfeather1/3ColorCube/blob/main/rch.js
 "use strict";
 
 var CT_SYM_METHOD = 3;      // Method 2 replaces cpt_sym (14 MB) with cpt_sym2 (318 KB) and cpt_min (600 KB)
@@ -1161,8 +1186,8 @@ var gtime0;
 var init_time;
 var search_time;
 
-
-//原rclib.js的内容
+//TODO 
+// 参考 https://github.com/mfeather1/3ColorCube/blob/main/rclib.js
 // Author: Michael Feather
 
 "use strict";
