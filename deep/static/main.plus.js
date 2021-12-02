@@ -19,7 +19,6 @@ var rotX = -30, rotY = -30;
 
 var moves = [];
 
-
 function reOrderArray(arr,indecies) {
 	var temp = [];
 	for(var i = 0; i < indecies.length; i++) {
@@ -35,7 +34,7 @@ function randInt(min, max) {
 	return Math.floor(Math.random() * (max - min)) + min;
 }
 
-// ?
+
 function clearCube() {
 	for (i = 0; i < faceNames.length; i++) {
 		var myNode = document.getElementById(faceNames[i]);
@@ -44,6 +43,7 @@ function clearCube() {
 		}
 	}
 }
+
 
 // rbg转颜色
 function translateColors(color) {
@@ -80,6 +80,7 @@ function setStickerColors(newState) {
 			idx = idx + 1;
 		}
 	}
+
 
 	// 魔方编码方式
 	//
@@ -165,7 +166,42 @@ function setStickerColors(newState) {
 	document.getElementById("stickers_17").style.backgroundColor = translateColors(stickers[53].style.backgroundColor);
 }
 
-// ?
+//增加计时功能
+var saveStatexxx = [];
+var indexNewBotton = '10000';
+function addButtonTimeStateShow(newBottonId){
+  setStickerColors(saveStatexxx[newBottonId-10000]);
+}
+function addButtonTimeState(){
+  // alert("1");
+  saveStatexxx[Number(indexNewBotton)-10000] = state;
+  var o=document.createElement("input"); 
+  // var o=document.createElement("button"); 
+  o.id=indexNewBotton;
+
+  o.type = "button" ; 
+
+  o.value = document.getElementById('fen').value + "m" + document.getElementById('miao').value +"s";
+  document.getElementById('saveStatesolution_container').appendChild(o);
+  
+  // o.addEventListener("click",addButtonTimeStateShow(Number(document.getElementById(indexNewBotton).id)));
+  // o.addEventListener("click",newindex());
+  o.onclick=function(){
+    var val=$(this).attr("id");
+    alert(val);
+    addButtonTimeStateShow(val);
+  };
+
+  
+  o = null;//及时解除不再使用的变量引用,即将其赋值为 null;  
+  indexNewBotton++;
+}
+  // function newindex(){
+  //   a = Number(document.getElementById(indexNewBotton).id);
+  //   alert(a);
+  // }
+
+
 function buttonPressed(ev) {
 	var face = ''
 	var direction = '1'
@@ -201,6 +237,7 @@ function enableScroll() {
 	document.getElementById("last_state").disabled=false;
 }
 
+
 // 禁止前进、后退等四个Scroll按钮
 function disableScroll() {
 	//so keyboard input can work without having to click away from disabled button
@@ -226,7 +263,6 @@ function clearSoln() {
 	disableScroll();
 }
 
-//？
 function setSolnText(setColor=true) {
 	solution_text_mod = JSON.parse(JSON.stringify(solution_text));
 	if (solveIdx >= 0) {
@@ -245,7 +281,6 @@ function enableInput() {
 	document.getElementById("solve").disabled=false;
 	
 	$(document).on("keypress", buttonPressed);
-
 	document.getElementById("U1").disabled = false;
 	document.getElementById("U2").disabled = false;
 	document.getElementById("D1").disabled = false;
@@ -330,7 +365,6 @@ function disableInput() {
 	document.getElementById("solve").disabled=true;
 	
 	$(document).off("keypress", buttonPressed);
-
 	document.getElementById("U1").disabled = true;
 	document.getElementById("U2").disabled = true;
 	document.getElementById("D1").disabled = true;
@@ -409,7 +443,7 @@ function disableInput() {
 	document.getElementById("stickers_53").disabled = true;
 }
 
-// ?
+
 function nextState(moveTimeout=0) {
 	if (moves.length > 0) {
 		disableInput();
@@ -584,7 +618,6 @@ function solveCube() {
 	var stickers_background = stickers_background_arr.join('');
 	// 对于平面展开图，从左上到右下的颜色简写
 	// stickers_background: ROBGWRYBOBWRGOGWGWRWYYORYGRWROGBOYGOYBBWBWRBGBROYYWOYG
-	console.log(JSON.stringify(state))
 	var verify = verify_main(stickers_background); //verify_main是验证魔方的函数
 	if (verify == 0) {
 		document.getElementById("solution_text").innerHTML = "SOLVING...";
@@ -811,7 +844,7 @@ function singleRotation(id){
 }
 
 
-// 转动？？
+// 转动
 function rotation() {
 	var input = document.getElementById("input").value;
 	var input_arr = input.split(/\s+/);
@@ -857,9 +890,9 @@ function initCube(){
 	document.getElementById('input').value = "";
 }
 
+
 // 验证模块
 // 参考: https://github.com/mfeather1/3ColorCube/blob/main/verify.js
-
 "use strict";
 var msgtxt = [];
 var CENTERS = [4, 22, 25, 28, 31, 49];
@@ -2948,3 +2981,4 @@ function convert_time(n) {
     return(h  + ':' + m + ':' + s  + '.' + ms);
   }
 }
+

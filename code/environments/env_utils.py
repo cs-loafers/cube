@@ -1,9 +1,11 @@
 import numpy as np
 from random import choice
 import re
-
+import os
 import sys
 sys.path.append('./')
+sys.path.append(os.path.abspath(os.path.dirname(os.getcwd())+os.path.sep+".") + '/code/environments/')
+import cube_interactive_simple
 
 def getEnvironment(envName):
     envName = envName.lower()

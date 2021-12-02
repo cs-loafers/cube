@@ -123,6 +123,7 @@ def solve(state):
     global socketName
     sys.path.append('./')
     sys.path.append('./solvers/cube3/')
+    sys.path.append(os.path.abspath(os.path.dirname(os.getcwd())+os.path.sep+".") + '/code/solvers/cube3/')
     useGPU = True
     if len(os.environ['CUDA_VISIBLE_DEVICES']) > 1:
         gpuNums = [int(x) for x in os.environ['CUDA_VISIBLE_DEVICES'].split(",")]
