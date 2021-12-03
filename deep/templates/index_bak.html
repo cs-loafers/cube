@@ -20,21 +20,56 @@
 <body>
     <div class="container">
         <center>
-            <h3>魔方游戏(记得改名字)</h3>
-            <div>
-            <a href="/index/guidance">
-            <button id="scramble" type="button">帮我还原手中魔方</button>
-            </a>
+            <h1>Solve the Rubik's Cube Using Deep Learning</h1>
+            <div id="program_container" class="container">
+                <div id="solution_container" class="container">
+                    <button disabled id="first_state" type="button">&#060;&#060;</button>
+                    <button disabled id="prev_state" type="button">&#060;</button>
+                    <button disabled id="next_state" type="button">&#062;</button>
+                    <button disabled id="last_state" type="button">&#062;&#062;</button>
+                    <h4 id="solution_text">Solution:</h4>
+                </div>
+
+                <div id="cube_div" class="container" style="padding: 60px">
+                <section class="cube_container">
+                    <div id="cube">
+                        <figure id="front" class="front">
+                        </figure>
+                        <figure id="back" class="back">
+                        </figure>
+                        <figure id="right" class="right">
+                        </figure>
+                        <figure id="left" class="left">
+                        </figure>
+                        <figure id="top" class="top">
+                        </figure>
+                        <figure id="bottom" class="bottom">
+                        </figure>
+                    </div>
+                </section>
             </div>
-                 <br />
-            <div>
-            <a href="/index/challenge">
-            <button id="solve" type="button">我要挑战魔方还原</button>
-            </a>
+
+                <br>
+
+                <div id="button_container" class="container">
+                    <button disabled id="scramble" type="button">Scramble</button>
+                    <button disabled id="solve" type="button">Solve!</button>
+                </div>
             </div>
         </center>
     </div>
     <br>
+    <center>
+	    <h4>Use the mouse to turn the cube. &#13;&#10;</h4>
+        <h4>
+            Turn the faces with the U/D/L/R/B/F keys.
+            Hold shift to turn faces couter-clockwise.
+        </h4>
+        <h4>
+            Press scramble to randomly scramble the cube.
+            Press solve to solve the cube using deep learning!
+        </h4>
+    </center>
 
     <br>
     <div class="well well-lg">
@@ -58,8 +93,8 @@
     </div>
 
 
-<!--    <script src="/static/jquery.min.js"></script>-->
-<!--    <script src="/static/main.js"></script>-->
+    <script src="/static/jquery.min.js"></script>
+    <script src="/static/main.js"></script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>z
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>

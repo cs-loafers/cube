@@ -56,8 +56,16 @@ anglesSet = {24: [2, 20, 44], 25: [0, 26, 47], 34: [8, 35, 38], 35: [6, 29, 53],
 
 
 def index(requests):
-    return render(requests,'index.html')
-
+    print(requests)
+    return render(requests, 'index.html')
+    
+def guidance(requests):
+    print(requests)
+    return render(requests, 'guidance.html')
+    
+def challenge(requests):
+    print(requests)
+    return render(requests, 'challenge.html')
 
 def index_plus(requests):
     print(requests)
@@ -170,33 +178,5 @@ def solve_plus(request):
             moves_rev.append(step[0] + "_-1")
             solve_text.append(step[0])
     data = {'moves': moves, 'moves_rev': moves_rev, 'solve_text': solve_text, 'state': stateArray, 'error': 0}
-    return HttpResponse(json.dumps(data))
-    
-
-def solve(request):
-    stateUnicode = request.POST.get('state')
-    stateStr = stateUnicode.encode('utf-8')
-    stateStr = stateStr.replace("[", "")
-    stateStr = stateStr.replace("]", "")
-    stateSpilt = stateStr.split(",")
-    stateArray = []
-    for stickers in stateSpilt:
-        stateArray.append(int(stickers))
-    stateArray2 = reOrderArray(stateArray, FEToState)
-    state = np.array(stateArray2)
-    soln = nnetSolve.solve(state)
-    moves = []
-    moves_rev = []
-    solve_text = []
-    for step in soln:
-        if step[1] == -1:
-            moves.append(step[0] + "_-1")
-            moves_rev.append(step[0] + "_1")
-            solve_text.append(step[0] + "'")
-        else:
-            moves.append(step[0] + "_1")
-            moves_rev.append(step[0] + "_-1")
-            solve_text.append(step[0])
-    data = {'moves': moves, 'moves_rev': moves_rev, 'solve_text': solve_text}
     return HttpResponse(json.dumps(data))
     

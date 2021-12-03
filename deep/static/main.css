@@ -6,8 +6,19 @@
 	perspective: 1000px;
 }
 
+/*部分html元素是固定需要的，隐藏起来*/
+#transparent {
+	height: 0px;
+	width: 0px;
+	opacity:0;
+}
+      
+#right {
+    float: right;
+}
+
 #solution_container {
-	background-color: #FFFFFF
+	background-color: #FFFFFF;
 }
 
 #cube_div {
@@ -34,6 +45,10 @@
 	border: 1px solid black;
 	opacity:1.0;
 	background-color: #000000;
+}
+
+#tmp {
+    opacity:0;
 }
 
 .sticker {

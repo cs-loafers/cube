@@ -1,3 +1,4 @@
+
 var state = [];
 var rotateIdxs_old = null;
 var rotateIdxs_new = null;
@@ -109,97 +110,149 @@ function setStickerColors(newState) {
 	//				09 10 11
 	//				12 13 14
 	//				15 16 17
-	var stickers = document.getElementsByClassName("sticker");
-	document.getElementById("stickers_0").style.backgroundColor = translateColors(stickers[36].style.backgroundColor);
-	document.getElementById("stickers_1").style.backgroundColor = translateColors(stickers[37].style.backgroundColor);
-	document.getElementById("stickers_2").style.backgroundColor = translateColors(stickers[38].style.backgroundColor);
-	document.getElementById("stickers_3").style.backgroundColor = translateColors(stickers[39].style.backgroundColor);
-	document.getElementById("stickers_4").style.backgroundColor = translateColors(stickers[40].style.backgroundColor);
-	document.getElementById("stickers_5").style.backgroundColor = translateColors(stickers[41].style.backgroundColor);
-	document.getElementById("stickers_6").style.backgroundColor = translateColors(stickers[42].style.backgroundColor);
-	document.getElementById("stickers_7").style.backgroundColor = translateColors(stickers[43].style.backgroundColor);
-	document.getElementById("stickers_8").style.backgroundColor = translateColors(stickers[44].style.backgroundColor);
-	document.getElementById("stickers_18").style.backgroundColor = translateColors(stickers[27].style.backgroundColor);
-	document.getElementById("stickers_19").style.backgroundColor = translateColors(stickers[28].style.backgroundColor);
-	document.getElementById("stickers_20").style.backgroundColor = translateColors(stickers[29].style.backgroundColor);
-	document.getElementById("stickers_21").style.backgroundColor = translateColors(stickers[30].style.backgroundColor);
-	document.getElementById("stickers_22").style.backgroundColor = translateColors(stickers[31].style.backgroundColor);
-	document.getElementById("stickers_23").style.backgroundColor = translateColors(stickers[32].style.backgroundColor);
-	document.getElementById("stickers_24").style.backgroundColor = translateColors(stickers[33].style.backgroundColor);
-	document.getElementById("stickers_25").style.backgroundColor = translateColors(stickers[34].style.backgroundColor);
-	document.getElementById("stickers_26").style.backgroundColor = translateColors(stickers[35].style.backgroundColor);
-	document.getElementById("stickers_45").style.backgroundColor = translateColors(stickers[0].style.backgroundColor);
-	document.getElementById("stickers_46").style.backgroundColor = translateColors(stickers[1].style.backgroundColor);
-	document.getElementById("stickers_47").style.backgroundColor = translateColors(stickers[2].style.backgroundColor);
-	document.getElementById("stickers_48").style.backgroundColor = translateColors(stickers[3].style.backgroundColor);
-	document.getElementById("stickers_49").style.backgroundColor = translateColors(stickers[4].style.backgroundColor);
-	document.getElementById("stickers_50").style.backgroundColor = translateColors(stickers[5].style.backgroundColor);
-	document.getElementById("stickers_51").style.backgroundColor = translateColors(stickers[6].style.backgroundColor);
-	document.getElementById("stickers_52").style.backgroundColor = translateColors(stickers[7].style.backgroundColor);
-	document.getElementById("stickers_53").style.backgroundColor = translateColors(stickers[8].style.backgroundColor);
-	document.getElementById("stickers_27").style.backgroundColor = translateColors(stickers[18].style.backgroundColor);
-	document.getElementById("stickers_28").style.backgroundColor = translateColors(stickers[19].style.backgroundColor);
-	document.getElementById("stickers_29").style.backgroundColor = translateColors(stickers[20].style.backgroundColor);
-	document.getElementById("stickers_30").style.backgroundColor = translateColors(stickers[21].style.backgroundColor);
-	document.getElementById("stickers_31").style.backgroundColor = translateColors(stickers[22].style.backgroundColor);
-	document.getElementById("stickers_32").style.backgroundColor = translateColors(stickers[23].style.backgroundColor);
-	document.getElementById("stickers_33").style.backgroundColor = translateColors(stickers[24].style.backgroundColor);
-	document.getElementById("stickers_34").style.backgroundColor = translateColors(stickers[25].style.backgroundColor);
-	document.getElementById("stickers_35").style.backgroundColor = translateColors(stickers[26].style.backgroundColor);
-	document.getElementById("stickers_44").style.backgroundColor = translateColors(stickers[17].style.backgroundColor);
-	document.getElementById("stickers_43").style.backgroundColor = translateColors(stickers[16].style.backgroundColor);
-	document.getElementById("stickers_42").style.backgroundColor = translateColors(stickers[15].style.backgroundColor);
-	document.getElementById("stickers_41").style.backgroundColor = translateColors(stickers[14].style.backgroundColor);
-	document.getElementById("stickers_40").style.backgroundColor = translateColors(stickers[13].style.backgroundColor);
-	document.getElementById("stickers_39").style.backgroundColor = translateColors(stickers[12].style.backgroundColor);
-	document.getElementById("stickers_38").style.backgroundColor = translateColors(stickers[11].style.backgroundColor);
-	document.getElementById("stickers_37").style.backgroundColor = translateColors(stickers[10].style.backgroundColor);
-	document.getElementById("stickers_36").style.backgroundColor = translateColors(stickers[9].style.backgroundColor);
-	document.getElementById("stickers_9").style.backgroundColor = translateColors(stickers[45].style.backgroundColor);
-	document.getElementById("stickers_10").style.backgroundColor = translateColors(stickers[46].style.backgroundColor);
-	document.getElementById("stickers_11").style.backgroundColor = translateColors(stickers[47].style.backgroundColor);
-	document.getElementById("stickers_12").style.backgroundColor = translateColors(stickers[48].style.backgroundColor);
-	document.getElementById("stickers_13").style.backgroundColor = translateColors(stickers[49].style.backgroundColor);
-	document.getElementById("stickers_14").style.backgroundColor = translateColors(stickers[50].style.backgroundColor);
-	document.getElementById("stickers_15").style.backgroundColor = translateColors(stickers[51].style.backgroundColor);
-	document.getElementById("stickers_16").style.backgroundColor = translateColors(stickers[52].style.backgroundColor);
-	document.getElementById("stickers_17").style.backgroundColor = translateColors(stickers[53].style.backgroundColor);
+	if (document.getElementById('redButton')){
+	    var stickers = document.getElementsByClassName("sticker");
+	    document.getElementById("stickers_0").style.backgroundColor = translateColors(stickers[36].style.backgroundColor);
+	    document.getElementById("stickers_1").style.backgroundColor = translateColors(stickers[37].style.backgroundColor);
+	    document.getElementById("stickers_2").style.backgroundColor = translateColors(stickers[38].style.backgroundColor);
+	    document.getElementById("stickers_3").style.backgroundColor = translateColors(stickers[39].style.backgroundColor);
+	    document.getElementById("stickers_4").style.backgroundColor = translateColors(stickers[40].style.backgroundColor);
+	    document.getElementById("stickers_5").style.backgroundColor = translateColors(stickers[41].style.backgroundColor);
+	    document.getElementById("stickers_6").style.backgroundColor = translateColors(stickers[42].style.backgroundColor);
+	    document.getElementById("stickers_7").style.backgroundColor = translateColors(stickers[43].style.backgroundColor);
+	    document.getElementById("stickers_8").style.backgroundColor = translateColors(stickers[44].style.backgroundColor);
+	    document.getElementById("stickers_18").style.backgroundColor = translateColors(stickers[27].style.backgroundColor);
+	    document.getElementById("stickers_19").style.backgroundColor = translateColors(stickers[28].style.backgroundColor);
+	    document.getElementById("stickers_20").style.backgroundColor = translateColors(stickers[29].style.backgroundColor);
+	    document.getElementById("stickers_21").style.backgroundColor = translateColors(stickers[30].style.backgroundColor);
+	    document.getElementById("stickers_22").style.backgroundColor = translateColors(stickers[31].style.backgroundColor);
+	    document.getElementById("stickers_23").style.backgroundColor = translateColors(stickers[32].style.backgroundColor);
+	    document.getElementById("stickers_24").style.backgroundColor = translateColors(stickers[33].style.backgroundColor);
+	    document.getElementById("stickers_25").style.backgroundColor = translateColors(stickers[34].style.backgroundColor);
+	    document.getElementById("stickers_26").style.backgroundColor = translateColors(stickers[35].style.backgroundColor);
+	    document.getElementById("stickers_45").style.backgroundColor = translateColors(stickers[0].style.backgroundColor);
+	    document.getElementById("stickers_46").style.backgroundColor = translateColors(stickers[1].style.backgroundColor);
+	    document.getElementById("stickers_47").style.backgroundColor = translateColors(stickers[2].style.backgroundColor);
+	    document.getElementById("stickers_48").style.backgroundColor = translateColors(stickers[3].style.backgroundColor);
+	    document.getElementById("stickers_49").style.backgroundColor = translateColors(stickers[4].style.backgroundColor);
+	    document.getElementById("stickers_50").style.backgroundColor = translateColors(stickers[5].style.backgroundColor);
+	    document.getElementById("stickers_51").style.backgroundColor = translateColors(stickers[6].style.backgroundColor);
+	    document.getElementById("stickers_52").style.backgroundColor = translateColors(stickers[7].style.backgroundColor);
+	    document.getElementById("stickers_53").style.backgroundColor = translateColors(stickers[8].style.backgroundColor);
+	    document.getElementById("stickers_27").style.backgroundColor = translateColors(stickers[18].style.backgroundColor);
+	    document.getElementById("stickers_28").style.backgroundColor = translateColors(stickers[19].style.backgroundColor);
+	    document.getElementById("stickers_29").style.backgroundColor = translateColors(stickers[20].style.backgroundColor);
+	    document.getElementById("stickers_30").style.backgroundColor = translateColors(stickers[21].style.backgroundColor);
+	    document.getElementById("stickers_31").style.backgroundColor = translateColors(stickers[22].style.backgroundColor);
+	    document.getElementById("stickers_32").style.backgroundColor = translateColors(stickers[23].style.backgroundColor);
+	    document.getElementById("stickers_33").style.backgroundColor = translateColors(stickers[24].style.backgroundColor);
+	    document.getElementById("stickers_34").style.backgroundColor = translateColors(stickers[25].style.backgroundColor);
+	    document.getElementById("stickers_35").style.backgroundColor = translateColors(stickers[26].style.backgroundColor);
+	    document.getElementById("stickers_44").style.backgroundColor = translateColors(stickers[17].style.backgroundColor);
+	    document.getElementById("stickers_43").style.backgroundColor = translateColors(stickers[16].style.backgroundColor);
+	    document.getElementById("stickers_42").style.backgroundColor = translateColors(stickers[15].style.backgroundColor);
+	    document.getElementById("stickers_41").style.backgroundColor = translateColors(stickers[14].style.backgroundColor);
+	    document.getElementById("stickers_40").style.backgroundColor = translateColors(stickers[13].style.backgroundColor);
+	    document.getElementById("stickers_39").style.backgroundColor = translateColors(stickers[12].style.backgroundColor);
+	    document.getElementById("stickers_38").style.backgroundColor = translateColors(stickers[11].style.backgroundColor);
+	    document.getElementById("stickers_37").style.backgroundColor = translateColors(stickers[10].style.backgroundColor);
+	    document.getElementById("stickers_36").style.backgroundColor = translateColors(stickers[9].style.backgroundColor);
+	    document.getElementById("stickers_9").style.backgroundColor = translateColors(stickers[45].style.backgroundColor);
+	    document.getElementById("stickers_10").style.backgroundColor = translateColors(stickers[46].style.backgroundColor);
+	    document.getElementById("stickers_11").style.backgroundColor = translateColors(stickers[47].style.backgroundColor);
+	    document.getElementById("stickers_12").style.backgroundColor = translateColors(stickers[48].style.backgroundColor);
+	    document.getElementById("stickers_13").style.backgroundColor = translateColors(stickers[49].style.backgroundColor);
+	    document.getElementById("stickers_14").style.backgroundColor = translateColors(stickers[50].style.backgroundColor);
+	    document.getElementById("stickers_15").style.backgroundColor = translateColors(stickers[51].style.backgroundColor);
+	    document.getElementById("stickers_16").style.backgroundColor = translateColors(stickers[52].style.backgroundColor);
+	    document.getElementById("stickers_17").style.backgroundColor = translateColors(stickers[53].style.backgroundColor);
+	}
 }
 
-//增加计时功能
-var saveStatexxx = [];
+// 增加计时功能
+// 状态存储队列,当前增加的组件ID,限制保存状态的个数
+var stateQueue = [];
 var indexNewBotton = '10000';
+var LIMIT = 5
+var n = 0
+
+// 读取状态
 function addButtonTimeStateShow(newBottonId){
-  setStickerColors(saveStatexxx[newBottonId-10000]);
+    setStickerColors(stateQueue[newBottonId-10000]);
 }
+
 function addButtonTimeState(){
-  // alert("1");
-  saveStatexxx[Number(indexNewBotton)-10000] = state;
-  var o=document.createElement("input"); 
-  // var o=document.createElement("button"); 
-  o.id=indexNewBotton;
+    console.log(stateQueue);
+    // 提示已满
+    //TODO 重复的状态不允许再存
+    if(n == LIMIT){
+        alert("魔方状态存得太多啦，删掉一些吧");
+        return;
+    }
+    //如果该位置已经存过状态了，转下一个位置
+    while(stateQueue[Number(indexNewBotton)-10000] != null){
+        // 递增
+        indexNewBotton = ((indexNewBotton + 1) % 10000) % LIMIT + 10000;
+    }
+    stateQueue[Number(indexNewBotton)-10000] = state;
+    var o=document.createElement("input");
+    var oDelete=document.createElement("input");
+    
+    o.id=indexNewBotton;
+    o.type = "button" ; 
+    o.style = "";
+    o.value = document.getElementById('fen').value + "m" + document.getElementById('miao').value +"s";
+    
+    
+    oDelete.id="d_" + indexNewBotton;
+    oDelete.type = "button" ; 
+    oDelete.style = "color:rgb(227, 23, 13);";
+    oDelete.value = "删除";
+    
+    var div = document.createElement("div"); 
+    div.id = "v_" + indexNewBotton;
+    div.appendChild(o);
+    div.appendChild(oDelete);
+    div.style = "display: inline-block; float: left; width: 80px;"
+    
+    document.getElementById('saveStatesolution_container').appendChild(div);
+    n++;
 
-  o.type = "button" ; 
-
-  o.value = document.getElementById('fen').value + "m" + document.getElementById('miao').value +"s";
-  document.getElementById('saveStatesolution_container').appendChild(o);
-  
-  // o.addEventListener("click",addButtonTimeStateShow(Number(document.getElementById(indexNewBotton).id)));
-  // o.addEventListener("click",newindex());
-  o.onclick=function(){
-    var val=$(this).attr("id");
-    alert(val);
-    addButtonTimeStateShow(val);
-  };
-
-  
-  o = null;//及时解除不再使用的变量引用,即将其赋值为 null;  
-  indexNewBotton++;
+    // o.addEventListener("click",addButtonTimeStateShow(Number(document.getElementById(indexNewBotton).id)));
+    // o.addEventListener("click",newindex());
+    
+    // 读取
+    o.onclick=function(){
+        if (confirm("确定要读取这个状态吗？现在未保存的进度会消失！")) {
+            var val=$(this).attr("id");
+            addButtonTimeStateShow(val);
+        }
+    };
+    
+    // 删除
+    oDelete.onclick=function(){
+        if (confirm("确定要删除这个状态吗？")) {
+            var val=$(this).attr("id");
+            var num = val.split("_")[1];
+            var v = document.getElementById("v_" + num)
+            v.parentNode.removeChild(v);
+            stateQueue[Number(num)-10000] = null;
+            n--;
+            console.log(stateQueue);
+        }
+    };
+    // 及时解除不再使用的变量引用,即将其赋值为 null;  
+    o = null;
+    oDelete= null;
+    div = null;
+    
 }
-  // function newindex(){
-  //   a = Number(document.getElementById(indexNewBotton).id);
-  //   alert(a);
-  // }
+
+
+// function newindex(){
+//   a = Number(document.getElementById(indexNewBotton).id);
+//   alert(a);
+// }
 
 
 function buttonPressed(ev) {
@@ -279,170 +332,194 @@ function setSolnText(setColor=true) {
 function enableInput() {
 	document.getElementById("scramble").disabled=false;
 	document.getElementById("solve").disabled=false;
-	
+	if(document.getElementById("restart")){
+	    document.getElementById("restart").disabled = true;
+	    document.getElementById("saveState").disabled = false;
+	}
+
 	$(document).on("keypress", buttonPressed);
-	document.getElementById("U1").disabled = false;
-	document.getElementById("U2").disabled = false;
-	document.getElementById("D1").disabled = false;
-	document.getElementById("D2").disabled = false;
-	document.getElementById("L1").disabled = false;
-	document.getElementById("L2").disabled = false;
-	document.getElementById("R1").disabled = false;
-	document.getElementById("R2").disabled = false;
-	document.getElementById("F1").disabled = false;
-	document.getElementById("F2").disabled = false;
-	document.getElementById("B1").disabled = false;
-	document.getElementById("B2").disabled = false;
-	document.getElementById("input").disabled = false;
-	document.getElementById("rotation").disabled = false;
-	document.getElementById("initcube").disabled = false;
-	document.getElementById("redButton").disabled = false;
-	document.getElementById("yellowButton").disabled = false;
-	document.getElementById("orangeButton").disabled = false;
-	document.getElementById("greenButton").disabled = false;
-	document.getElementById("whiteButton").disabled = false;
-	document.getElementById("blueButton").disabled = false;
-	document.getElementById("cancelButton").disabled = false;
-	document.getElementById("stickers_0").disabled = false;
-	document.getElementById("stickers_1").disabled = false;
-	document.getElementById("stickers_2").disabled = false;
-	document.getElementById("stickers_3").disabled = false;
-	document.getElementById("stickers_4").disabled = false;
-	document.getElementById("stickers_5").disabled = false;
-	document.getElementById("stickers_6").disabled = false;
-	document.getElementById("stickers_7").disabled = false;
-	document.getElementById("stickers_8").disabled = false;
-	document.getElementById("stickers_9").disabled = false;
-	document.getElementById("stickers_10").disabled = false;
-	document.getElementById("stickers_11").disabled = false;
-	document.getElementById("stickers_12").disabled = false;
-	document.getElementById("stickers_13").disabled = false;
-	document.getElementById("stickers_14").disabled = false;
-	document.getElementById("stickers_15").disabled = false;
-	document.getElementById("stickers_16").disabled = false;
-	document.getElementById("stickers_17").disabled = false;
-	document.getElementById("stickers_18").disabled = false;
-	document.getElementById("stickers_19").disabled = false;
-	document.getElementById("stickers_20").disabled = false;
-	document.getElementById("stickers_21").disabled = false;
-	document.getElementById("stickers_22").disabled = false;
-	document.getElementById("stickers_23").disabled = false;
-	document.getElementById("stickers_24").disabled = false;
-	document.getElementById("stickers_25").disabled = false;
-	document.getElementById("stickers_26").disabled = false;
-	document.getElementById("stickers_27").disabled = false;
-	document.getElementById("stickers_28").disabled = false;
-	document.getElementById("stickers_29").disabled = false;
-	document.getElementById("stickers_30").disabled = false;
-	document.getElementById("stickers_31").disabled = false;
-	document.getElementById("stickers_32").disabled = false;
-	document.getElementById("stickers_33").disabled = false;
-	document.getElementById("stickers_34").disabled = false;
-	document.getElementById("stickers_35").disabled = false;
-	document.getElementById("stickers_36").disabled = false;
-	document.getElementById("stickers_37").disabled = false;
-	document.getElementById("stickers_38").disabled = false;
-	document.getElementById("stickers_39").disabled = false;
-	document.getElementById("stickers_40").disabled = false;
-	document.getElementById("stickers_41").disabled = false;
-	document.getElementById("stickers_42").disabled = false;
-	document.getElementById("stickers_43").disabled = false;
-	document.getElementById("stickers_44").disabled = false;
-	document.getElementById("stickers_45").disabled = false;
-	document.getElementById("stickers_46").disabled = false;
-	document.getElementById("stickers_47").disabled = false;
-	document.getElementById("stickers_48").disabled = false;
-	document.getElementById("stickers_49").disabled = false;
-	document.getElementById("stickers_50").disabled = false;
-	document.getElementById("stickers_51").disabled = false;
-	document.getElementById("stickers_52").disabled = false;
-	document.getElementById("stickers_53").disabled = false;
+	
+//	document.getElementById("input").disabled = false;
+//	document.getElementById("rotation").disabled = false;
+	if (document.getElementById("initcube"))
+	    document.getElementById("initcube").disabled = false;
+	
+	if (document.getElementById('U1')){
+	    document.getElementById("U1").disabled = false;
+	    document.getElementById("U2").disabled = false;
+	    document.getElementById("D1").disabled = false;
+	    document.getElementById("D2").disabled = false;
+	    document.getElementById("L1").disabled = false;
+	    document.getElementById("L2").disabled = false;
+	    document.getElementById("R1").disabled = false;
+	    document.getElementById("R2").disabled = false;
+	    document.getElementById("F1").disabled = false;
+	    document.getElementById("F2").disabled = false;
+	    document.getElementById("B1").disabled = false;
+	    document.getElementById("B2").disabled = false;
+	}
+	
+	if (document.getElementById('redButton')){
+	    document.getElementById("redButton").disabled = false;
+	    document.getElementById("yellowButton").disabled = false;
+	    document.getElementById("orangeButton").disabled = false;
+	    document.getElementById("greenButton").disabled = false;
+	    document.getElementById("whiteButton").disabled = false;
+	    document.getElementById("blueButton").disabled = false;
+	    document.getElementById("cancelButton").disabled = false;
+	    document.getElementById("stickers_0").disabled = false;
+	    document.getElementById("stickers_1").disabled = false;
+	    document.getElementById("stickers_2").disabled = false;
+	    document.getElementById("stickers_3").disabled = false;
+	    document.getElementById("stickers_4").disabled = false;
+	    document.getElementById("stickers_5").disabled = false;
+	    document.getElementById("stickers_6").disabled = false;
+	    document.getElementById("stickers_7").disabled = false;
+	    document.getElementById("stickers_8").disabled = false;
+	    document.getElementById("stickers_9").disabled = false;
+	    document.getElementById("stickers_10").disabled = false;
+	    document.getElementById("stickers_11").disabled = false;
+	    document.getElementById("stickers_12").disabled = false;
+	    document.getElementById("stickers_13").disabled = false;
+	    document.getElementById("stickers_14").disabled = false;
+	    document.getElementById("stickers_15").disabled = false;
+	    document.getElementById("stickers_16").disabled = false;
+	    document.getElementById("stickers_17").disabled = false;
+	    document.getElementById("stickers_18").disabled = false;
+	    document.getElementById("stickers_19").disabled = false;
+	    document.getElementById("stickers_20").disabled = false;
+	    document.getElementById("stickers_21").disabled = false;
+	    document.getElementById("stickers_22").disabled = false;
+	    document.getElementById("stickers_23").disabled = false;
+	    document.getElementById("stickers_24").disabled = false;
+	    document.getElementById("stickers_25").disabled = false;
+	    document.getElementById("stickers_26").disabled = false;
+	    document.getElementById("stickers_27").disabled = false;
+	    document.getElementById("stickers_28").disabled = false;
+	    document.getElementById("stickers_29").disabled = false;
+	    document.getElementById("stickers_30").disabled = false;
+	    document.getElementById("stickers_31").disabled = false;
+	    document.getElementById("stickers_32").disabled = false;
+	    document.getElementById("stickers_33").disabled = false;
+	    document.getElementById("stickers_34").disabled = false;
+	    document.getElementById("stickers_35").disabled = false;
+	    document.getElementById("stickers_36").disabled = false;
+	    document.getElementById("stickers_37").disabled = false;
+	    document.getElementById("stickers_38").disabled = false;
+	    document.getElementById("stickers_39").disabled = false;
+	    document.getElementById("stickers_40").disabled = false;
+	    document.getElementById("stickers_41").disabled = false;
+	    document.getElementById("stickers_42").disabled = false;
+	    document.getElementById("stickers_43").disabled = false;
+	    document.getElementById("stickers_44").disabled = false;
+	    document.getElementById("stickers_45").disabled = false;
+	    document.getElementById("stickers_46").disabled = false;
+	    document.getElementById("stickers_47").disabled = false;
+	    document.getElementById("stickers_48").disabled = false;
+	    document.getElementById("stickers_49").disabled = false;
+	    document.getElementById("stickers_50").disabled = false;
+	    document.getElementById("stickers_51").disabled = false;
+	    document.getElementById("stickers_52").disabled = false;
+	    document.getElementById("stickers_53").disabled = false;
+	}
 }
+
 
 // 禁用打乱、解决按钮,解除绑定,禁用旋转按钮和涂色按钮
 function disableInput() {
 	document.getElementById("scramble").disabled=true;
 	document.getElementById("solve").disabled=true;
+	if(document.getElementById("restart")){
+	    document.getElementById("restart").disabled = true;
+	    document.getElementById("saveState").disabled = true;
+	}
 	
 	$(document).off("keypress", buttonPressed);
-	document.getElementById("U1").disabled = true;
-	document.getElementById("U2").disabled = true;
-	document.getElementById("D1").disabled = true;
-	document.getElementById("D2").disabled = true;
-	document.getElementById("L1").disabled = true;
-	document.getElementById("L2").disabled = true;
-	document.getElementById("R1").disabled = true;
-	document.getElementById("R2").disabled = true;
-	document.getElementById("F1").disabled = true;
-	document.getElementById("F2").disabled = true;
-	document.getElementById("B1").disabled = true;
-	document.getElementById("B2").disabled = true;
-	document.getElementById("input").disabled = true;
-	document.getElementById("rotation").disabled = true;
-	document.getElementById("initcube").disabled = true;
-	document.getElementById("redButton").disabled = true;
-	document.getElementById("yellowButton").disabled = true;
-	document.getElementById("orangeButton").disabled = true;
-	document.getElementById("greenButton").disabled = true;
-	document.getElementById("whiteButton").disabled = true;
-	document.getElementById("blueButton").disabled = true;
-	document.getElementById("cancelButton").disabled = true;
-	document.getElementById("stickers_0").disabled = true;
-	document.getElementById("stickers_1").disabled = true;
-	document.getElementById("stickers_2").disabled = true;
-	document.getElementById("stickers_3").disabled = true;
-	document.getElementById("stickers_4").disabled = true;
-	document.getElementById("stickers_5").disabled = true;
-	document.getElementById("stickers_6").disabled = true;
-	document.getElementById("stickers_7").disabled = true;
-	document.getElementById("stickers_8").disabled = true;
-	document.getElementById("stickers_9").disabled = true;
-	document.getElementById("stickers_10").disabled = true;
-	document.getElementById("stickers_11").disabled = true;
-	document.getElementById("stickers_12").disabled = true;
-	document.getElementById("stickers_13").disabled = true;
-	document.getElementById("stickers_14").disabled = true;
-	document.getElementById("stickers_15").disabled = true;
-	document.getElementById("stickers_16").disabled = true;
-	document.getElementById("stickers_17").disabled = true;
-	document.getElementById("stickers_18").disabled = true;
-	document.getElementById("stickers_19").disabled = true;
-	document.getElementById("stickers_20").disabled = true;
-	document.getElementById("stickers_21").disabled = true;
-	document.getElementById("stickers_22").disabled = true;
-	document.getElementById("stickers_23").disabled = true;
-	document.getElementById("stickers_24").disabled = true;
-	document.getElementById("stickers_25").disabled = true;
-	document.getElementById("stickers_26").disabled = true;
-	document.getElementById("stickers_27").disabled = true;
-	document.getElementById("stickers_28").disabled = true;
-	document.getElementById("stickers_29").disabled = true;
-	document.getElementById("stickers_30").disabled = true;
-	document.getElementById("stickers_31").disabled = true;
-	document.getElementById("stickers_32").disabled = true;
-	document.getElementById("stickers_33").disabled = true;
-	document.getElementById("stickers_34").disabled = true;
-	document.getElementById("stickers_35").disabled = true;
-	document.getElementById("stickers_36").disabled = true;
-	document.getElementById("stickers_37").disabled = true;
-	document.getElementById("stickers_38").disabled = true;
-	document.getElementById("stickers_39").disabled = true;
-	document.getElementById("stickers_40").disabled = true;
-	document.getElementById("stickers_41").disabled = true;
-	document.getElementById("stickers_42").disabled = true;
-	document.getElementById("stickers_43").disabled = true;
-	document.getElementById("stickers_44").disabled = true;
-	document.getElementById("stickers_45").disabled = true;
-	document.getElementById("stickers_46").disabled = true;
-	document.getElementById("stickers_47").disabled = true;
-	document.getElementById("stickers_48").disabled = true;
-	document.getElementById("stickers_49").disabled = true;
-	document.getElementById("stickers_50").disabled = true;
-	document.getElementById("stickers_51").disabled = true;
-	document.getElementById("stickers_52").disabled = true;
-	document.getElementById("stickers_53").disabled = true;
+	
+//	document.getElementById("input").disabled = true;
+//	document.getElementById("rotation").disabled = true;
+	if (document.getElementById("initcube"))
+	    document.getElementById("initcube").disabled = false;
+	
+	if (document.getElementById('U1')){
+	    document.getElementById("U1").disabled = true;
+	    document.getElementById("U2").disabled = true;
+	    document.getElementById("D1").disabled = true;
+	    document.getElementById("D2").disabled = true;
+	    document.getElementById("L1").disabled = true;
+	    document.getElementById("L2").disabled = true;
+	    document.getElementById("R1").disabled = true;
+	    document.getElementById("R2").disabled = true;
+	    document.getElementById("F1").disabled = true;
+	    document.getElementById("F2").disabled = true;
+	    document.getElementById("B1").disabled = true;
+	    document.getElementById("B2").disabled = true;
+	}
+	
+	if (document.getElementById('redButton')){
+	    document.getElementById("redButton").disabled = true;
+	    document.getElementById("yellowButton").disabled = true;
+	    document.getElementById("orangeButton").disabled = true;
+	    document.getElementById("greenButton").disabled = true;
+	    document.getElementById("whiteButton").disabled = true;
+	    document.getElementById("blueButton").disabled = true;
+	    document.getElementById("cancelButton").disabled = true;
+        document.getElementById("stickers_0").disabled = true;
+	    document.getElementById("stickers_1").disabled = true;
+	    document.getElementById("stickers_2").disabled = true;
+	    document.getElementById("stickers_3").disabled = true;
+	    document.getElementById("stickers_4").disabled = true;
+	    document.getElementById("stickers_5").disabled = true;
+	    document.getElementById("stickers_6").disabled = true;
+	    document.getElementById("stickers_7").disabled = true;
+	    document.getElementById("stickers_8").disabled = true;
+	    document.getElementById("stickers_9").disabled = true;
+	    document.getElementById("stickers_10").disabled = true;
+	    document.getElementById("stickers_11").disabled = true;
+	    document.getElementById("stickers_12").disabled = true;
+	    document.getElementById("stickers_13").disabled = true;
+	    document.getElementById("stickers_14").disabled = true;
+	    document.getElementById("stickers_15").disabled = true;
+	    document.getElementById("stickers_16").disabled = true;
+	    document.getElementById("stickers_17").disabled = true;
+	    document.getElementById("stickers_18").disabled = true;
+	    document.getElementById("stickers_19").disabled = true;
+	    document.getElementById("stickers_20").disabled = true;
+	    document.getElementById("stickers_21").disabled = true;
+	    document.getElementById("stickers_22").disabled = true;
+	    document.getElementById("stickers_23").disabled = true;
+	    document.getElementById("stickers_24").disabled = true;
+	    document.getElementById("stickers_25").disabled = true;
+	    document.getElementById("stickers_26").disabled = true;
+	    document.getElementById("stickers_27").disabled = true;
+	    document.getElementById("stickers_28").disabled = true;
+	    document.getElementById("stickers_29").disabled = true;
+	    document.getElementById("stickers_30").disabled = true;
+	    document.getElementById("stickers_31").disabled = true;
+	    document.getElementById("stickers_32").disabled = true;
+	    document.getElementById("stickers_33").disabled = true;
+	    document.getElementById("stickers_34").disabled = true;
+	    document.getElementById("stickers_35").disabled = true;
+	    document.getElementById("stickers_36").disabled = true;
+	    document.getElementById("stickers_37").disabled = true;
+	    document.getElementById("stickers_38").disabled = true;
+	    document.getElementById("stickers_39").disabled = true;
+	    document.getElementById("stickers_40").disabled = true;
+	    document.getElementById("stickers_41").disabled = true;
+	    document.getElementById("stickers_42").disabled = true;
+	    document.getElementById("stickers_43").disabled = true;
+	    document.getElementById("stickers_44").disabled = true;
+	    document.getElementById("stickers_45").disabled = true;
+	    document.getElementById("stickers_46").disabled = true;
+	    document.getElementById("stickers_47").disabled = true;
+	    document.getElementById("stickers_48").disabled = true;
+	    document.getElementById("stickers_49").disabled = true;
+	    document.getElementById("stickers_50").disabled = true;
+	    document.getElementById("stickers_51").disabled = true;
+	    document.getElementById("stickers_52").disabled = true;
+	    document.getElementById("stickers_53").disabled = true;
+	}
 }
-
 
 function nextState(moveTimeout=0) {
 	if (moves.length > 0) {
@@ -633,7 +710,7 @@ function solveCube() {
 				solution_text = response["solve_text"];
 				solution_text.push("SOLVED!");
 				setSolnText(true);
-
+                disableInput();
 				moves = JSON.parse(JSON.stringify(solveMoves));
 
 				setTimeout(function(){nextState(500)}, 500);
@@ -651,12 +728,35 @@ function solveCube() {
 	}
 }
 
+var a=0;
+var b=0;
+var t;
+
+function timer(){
+        document.getElementById('miao').value=b;
+        b +=1;
+        t = setTimeout(function(){
+            timer();
+        },1000)
+    if(b == 60){
+        a= a+1;
+        document.getElementById('fen').value = a;
+        b=0;
+    }
+}
+
+function initTimer(){
+    a = 0;
+    b = 0;
+}
+
 // DOM就绪时调用
 // 每次刷新时,ajax向initState路由发出请求,获得views的HttpResponse返回数据,用于js
 // initState路由本身也可访问得到数据
 // 关联各项按钮click事件到函数
 $( document ).ready($(function() {
 	disableInput();
+	
 	clearSoln();
 	$.ajax({
 		url: 'initState/',
@@ -680,11 +780,29 @@ $( document ).ready($(function() {
 	$("#cube").css("transform", "translateZ( -100px) rotateX( " + rotX + "deg) rotateY(" + rotY + "deg)"); //Initial orientation
 
 	$('#scramble').click(function() {
-		scrambleCube()
+	    // TODO guide还没改
+	    if(document.getElementById("scramble").innerHTML == "开始挑战"){
+	        scrambleCube();
+	        timer();
+	        document.getElementById("scramble").innerHTML = "重来不算!";
+	    }
+	    else{
+	        if (confirm("真的要重来吗？")) {
+	            clearTimeout(t);
+	            initTimer();
+                scrambleCube();
+	            timer();
+            }
+	    }
 	});
 
 	$('#solve').click(function() {
-		solveCube()
+	    if (confirm("真的要放弃吗？")) {
+	        solveCube()
+	        disableInput();
+            clearTimeout(t);
+            initTimer();
+        }
 	});
 
 	$('#first_state').click(function() {
@@ -730,8 +848,12 @@ $( document ).ready($(function() {
 	$('#cube_div').on("mouseleave", function() {
 		$('#cube_div').off("mousemove", mouseMoved);
 	});
-
-	console.log( "ready!" );
+    
+//    if (!document.getElementById('redButton')){
+//	    console.log( "hi!" );
+//	    
+//	}
+	
 }));
 
 
@@ -844,26 +966,26 @@ function singleRotation(id){
 }
 
 
-// 转动
-function rotation() {
-	var input = document.getElementById("input").value;
-	var input_arr = input.split(/\s+/);
-	moves = [];
-	for (var i = 0; i < input_arr.length; i++){
-		var direction = 1, move = "";
-		if(input_arr[i].indexOf('\'') > 0){
-			direction = -1;
-			move = input_arr[i][0].toString() + "_" + direction.toString();
-		}else if(input_arr[i].indexOf('2') > 0){
-			move = input_arr[i][0].toString() + "_" + direction.toString();
-			moves.push(move);
-		}else{
-			move = input_arr[i][0].toString() + "_" + direction.toString();
-		}
-		moves.push(move);
-	}
-	nextState(0);
-}
+// 转动??
+//function rotation() {
+//	var input = document.getElementById("input").value;
+//	var input_arr = input.split(/\s+/);
+//	moves = [];
+//	for (var i = 0; i < input_arr.length; i++){
+//		var direction = 1, move = "";
+//		if(input_arr[i].indexOf('\'') > 0){
+//			direction = -1;
+//			move = input_arr[i][0].toString() + "_" + direction.toString();
+//		}else if(input_arr[i].indexOf('2') > 0){
+//			move = input_arr[i][0].toString() + "_" + direction.toString();
+//			moves.push(move);
+//		}else{
+//			move = input_arr[i][0].toString() + "_" + direction.toString();
+//		}
+//		moves.push(move);
+//	}
+//	nextState(0);
+//}
 
 // 初始化,和$( document ).ready处重复
 function initCube(){
