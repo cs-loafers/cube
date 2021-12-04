@@ -30,14 +30,16 @@
             <h4>我要挑战魔方还原</h4>
             <div id="program_container" class="container">
                 <div id="solution_container" class="container">
-                   
+                        <a style="text-decoration: none;" href="/index">
+                            <button id="ret" type="button">返回</button>
+                        </a>
                         <button disabled id="first_state" type="button">&#060;&#060;</button>
                         <button disabled id="prev_state" type="button">&#060;</button>
                         <button disabled id="next_state" type="button">&#062;</button>
                         <button disabled id="last_state" type="button">&#062;&#062;</button>
                     
 <!--                    <br /><br/>-->
-                        <text style="margin-left:360px;">计时：</text>
+                        <text style="margin-left:310px;">计时：</text>
                        <input class="countTime" style="width: 50px;" type="text" name="" id="fen" value="0" />分
                        <input class="countTime" style="width: 50px" type="text" name="" id="miao" value="0" />秒
                        
@@ -81,12 +83,12 @@
 
                     <button disabled id="scramble" type="button">开始挑战</button>
                     <button disabled id="solve" type="button">我想要答案</button>
-                     <a href="/index/challenge">
+                     <a style="text-decoration: none;" href="/index/challenge">
                         <button disabled id="restart" type="button">从头再来</button>
                      </a>
                     <br /><br />
                     
-                    <button style="margin-left:50px;float: right;" id="saveState" type="button" onclick="addButtonTimeState()">保存当前魔方状态</button>
+                    <button disabled style="margin-left:50px;float: right;" id="saveState" type="button" onclick="addButtonTimeState()">保存当前魔方状态</button>
                     <div style="display: inline-block;" id="saveStatesolution_container"></div>
 <!--                    input: <input disabled id="input" type="text" style="width:400px">-->
 <!--                    <button disabled id="rotation" type="button" onclick="rotation()">Rotation</button>-->

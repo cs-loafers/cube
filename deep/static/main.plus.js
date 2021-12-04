@@ -170,11 +170,12 @@ function setStickerColors(newState) {
 }
 
 // 增加计时功能
-// 状态存储队列,当前增加的组件ID,限制保存状态的个数
+// 状态存储队列,当前增加的组件ID(number),限制保存状态的个数
 var stateQueue = [];
-var indexNewBotton = '10000';
-var LIMIT = 5
-var n = 0
+var indexNewBotton = 10000;
+var LIMIT = 5;
+var n = 0;
+var restartFlag = false;
 
 // 读取状态
 function addButtonTimeStateShow(newBottonId){
@@ -182,7 +183,6 @@ function addButtonTimeStateShow(newBottonId){
 }
 
 function addButtonTimeState(){
-    console.log(stateQueue);
     // 提示已满
     //TODO 重复的状态不允许再存
     if(n == LIMIT){
@@ -332,10 +332,6 @@ function setSolnText(setColor=true) {
 function enableInput() {
 	document.getElementById("scramble").disabled=false;
 	document.getElementById("solve").disabled=false;
-	if(document.getElementById("restart")){
-	    document.getElementById("restart").disabled = true;
-	    document.getElementById("saveState").disabled = false;
-	}
 
 	$(document).on("keypress", buttonPressed);
 	
@@ -429,10 +425,7 @@ function enableInput() {
 function disableInput() {
 	document.getElementById("scramble").disabled=true;
 	document.getElementById("solve").disabled=true;
-	if(document.getElementById("restart")){
-	    document.getElementById("restart").disabled = true;
-	    document.getElementById("saveState").disabled = true;
-	}
+	
 	
 	$(document).off("keypress", buttonPressed);
 	
@@ -521,6 +514,20 @@ function disableInput() {
 	}
 }
 
+function enableState(){
+    for (i in stateQueue){
+        document.getElementById(Number(i) + 10000).disabled = true;
+        document.getElementById("d_" + (Number(i) + 10000)).disabled = true;
+    }
+}
+
+function disableState(){
+    for (i in stateQueue){
+        document.getElementById(Number(i) + 10000).disabled = true;
+        document.getElementById("d_" + (Number(i) + 10000)).disabled = true;
+    }
+}
+
 function nextState(moveTimeout=0) {
 	if (moves.length > 0) {
 		disableInput();
@@ -552,14 +559,22 @@ function nextState(moveTimeout=0) {
 		if (moves.length > 0) {
 			setTimeout(function(){nextState(moveTimeout)}, moveTimeout);
 		} else {
-			enableInput();
+		    if(restartFlag){
+		        if(document.getElementById("restart").disabled){
+		            document.getElementById("restart").disabled = false;
+		            disableState();
+		        }
+		    }
+		    else{
+		        enableInput();
+		    }
+		    
 			if (solveMoves.length > 0) {
 				enableScroll();
 				setSolnText();
 			}
 		}
 	} else {
-		enableInput();
 		if (solveMoves.length > 0) {
 			enableScroll();
 			setSolnText();
@@ -704,16 +719,20 @@ function solveCube() {
 			type: 'POST',
 			dataType: 'json',
 			success: function(response) {
+			
 				solveStartState = JSON.parse(JSON.stringify(state));
 				solveMoves = response["moves"];
 				solveMoves_rev = response["moves_rev"];
 				solution_text = response["solve_text"];
 				solution_text.push("SOLVED!");
 				setSolnText(true);
-                disableInput();
+                
 				moves = JSON.parse(JSON.stringify(solveMoves));
 
 				setTimeout(function(){nextState(500)}, 500);
+				
+				restartFlag = true;
+                
 			},
 			error: function(error) {
 					console.log(error);
@@ -784,6 +803,8 @@ $( document ).ready($(function() {
 	    if(document.getElementById("scramble").innerHTML == "开始挑战"){
 	        scrambleCube();
 	        timer();
+	        document.getElementById("saveState").disabled = false;
+	        enableState();
 	        document.getElementById("scramble").innerHTML = "重来不算!";
 	    }
 	    else{
@@ -798,10 +819,11 @@ $( document ).ready($(function() {
 
 	$('#solve').click(function() {
 	    if (confirm("真的要放弃吗？")) {
-	        solveCube()
-	        disableInput();
+	        document.getElementById("saveState").disabled = true;
+	        disableState();
+	        solveCube();
             clearTimeout(t);
-            initTimer();
+            disableInput();
         }
 	});
 
