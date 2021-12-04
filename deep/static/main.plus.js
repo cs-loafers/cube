@@ -797,8 +797,10 @@ $( document ).ready($(function() {
 	});
 
 	$("#cube").css("transform", "translateZ( -100px) rotateX( " + rotX + "deg) rotateY(" + rotY + "deg)"); //Initial orientation
+	
+	
 
-	$('#scramble').click(function() {
+	$('#scramble_challenge').click(function() {
 	    // TODO guide还没改
 	    if(document.getElementById("scramble").innerHTML == "开始挑战"){
 	        scrambleCube();
@@ -817,7 +819,7 @@ $( document ).ready($(function() {
 	    }
 	});
 
-	$('#solve').click(function() {
+	$('#solve_challenge').click(function() {
 	    if (confirm("真的要放弃吗？")) {
 	        document.getElementById("saveState").disabled = true;
 	        disableState();
