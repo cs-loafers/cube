@@ -330,8 +330,15 @@ function setSolnText(setColor=true) {
 
 // 启用打乱、解决按钮,绑定buttonPressed到keypress事件,启用旋转按钮和涂色按钮的启用
 function enableInput() {
-	document.getElementById("scramble").disabled=false;
-	document.getElementById("solve").disabled=false;
+    if(document.getElementById("scramble")){
+        document.getElementById("scramble").disabled=false;
+	    document.getElementById("solve").disabled=false;
+    }
+    else{
+        document.getElementById("scramble_challenge").disabled=false;
+	    document.getElementById("solve_challenge").disabled=false;
+    }
+	
 
 	$(document).on("keypress", buttonPressed);
 	
@@ -423,10 +430,14 @@ function enableInput() {
 
 // 禁用打乱、解决按钮,解除绑定,禁用旋转按钮和涂色按钮
 function disableInput() {
-	document.getElementById("scramble").disabled=true;
-	document.getElementById("solve").disabled=true;
-	
-	
+    if(document.getElementById("scramble")){
+        document.getElementById("scramble").disabled=true;
+	    document.getElementById("solve").disabled=true;
+    }
+    else{
+        document.getElementById("scramble_challenge").disabled=true;
+	    document.getElementById("solve_challenge").disabled=true;
+    }
 	$(document).off("keypress", buttonPressed);
 	
 //	document.getElementById("input").disabled = true;
@@ -559,7 +570,7 @@ function nextState(moveTimeout=0) {
 		if (moves.length > 0) {
 			setTimeout(function(){nextState(moveTimeout)}, moveTimeout);
 		} else {
-		    if(restartFlag){
+		    if(restartFlag && document.getElementById("restart")){
 		        if(document.getElementById("restart").disabled){
 		            document.getElementById("restart").disabled = false;
 		            disableState();
@@ -731,7 +742,12 @@ function solveCube() {
 
 				setTimeout(function(){nextState(500)}, 500);
 				
+				// 如果不在challenge页面，无所谓
 				restartFlag = true;
+				
+				if(document.getElementById("redButton")){
+				    enableInput();
+				}
                 
 			},
 			error: function(error) {
@@ -801,13 +817,12 @@ $( document ).ready($(function() {
 	
 
 	$('#scramble_challenge').click(function() {
-	    // TODO guide还没改
-	    if(document.getElementById("scramble").innerHTML == "开始挑战"){
+	    if(document.getElementById("scramble_challenge").innerHTML == "开始挑战"){
 	        scrambleCube();
 	        timer();
 	        document.getElementById("saveState").disabled = false;
 	        enableState();
-	        document.getElementById("scramble").innerHTML = "重来不算!";
+	        document.getElementById("scramble_challenge").innerHTML = "重新打乱";
 	    }
 	    else{
 	        if (confirm("真的要重来吗？")) {
@@ -827,6 +842,14 @@ $( document ).ready($(function() {
             clearTimeout(t);
             disableInput();
         }
+	});
+	
+	$('#scramble').click(function() {
+	    scrambleCube();
+	});
+	
+	$('#solve').click(function() {
+	    solveCube();
 	});
 
 	$('#first_state').click(function() {
