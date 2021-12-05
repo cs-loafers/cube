@@ -1,6 +1,8 @@
 #coding:utf-8
 from django.test import TestCase, Client
+from deep.views import reOrderArray
 import json
+import copy
 
 FEToState = [6, 3, 0, 7, 4, 1, 8, 5, 2, 15, 12, 9, 16, 13, 10, 17, 14, 11, 24, 21, 18, 25, 22, 19, 26, 23, 20, 33, 30, 27, 34, 31, 28, 35, 32, 29, 38, 41, 44, 37, 40, 43, 36, 39, 42, 51, 48, 45, 52, 49, 46, 53, 50, 47]
 legalMoves = ["U_-1", "U_1", "D_-1", "D_1", "L_-1", "L_1", "R_-1", "R_1", "B_-1", "B_1", "F_-1", "F_1"]
@@ -61,14 +63,23 @@ class viewTestCase(TestCase):
 #    def tearDown(self):
 #    	print("tearDown")
     
-    # 测试get indexPlus
-    def test_index_plus(self):
-    	resp = self.client.get('/indexPlus/')
+    # 测试get
+    def test_index(self):
+    	resp = self.client.get('/index/')
+    	self.assertEqual(resp.status_code, 200)
+    	
+    def test_index_guidance(self):
+    	resp = self.client.get('/index/guidance/')
     	self.assertEqual(resp.status_code, 200)
         
+    def test_index_challenge(self):
+    	resp = self.client.get('/index/challenge/')
+    	self.assertEqual(resp.status_code, 200)
+    	
     # 测试post initState, 固定变量
-    def test_index_plus_init_state(self):
-    	resp = self.client.post('/indexPlus/initState/', data={}, dataType='json')
+    # 使用的initState和solvePlus是相同函数，因此只需要测试一次即可
+    def test_guidance_init_state(self):
+    	resp = self.client.post('/index/guidance/initState/', data={}, dataType='json')
     	self.assertEqual(resp.status_code, 200)
     	resp_json = json.loads(resp.content)
     	self.assertEqual(FEToState, resp_json['FEToState'])
@@ -77,13 +88,22 @@ class viewTestCase(TestCase):
     	self.assertEqual(rotateIdxs_old, resp_json['rotateIdxs_old'])
     	self.assertEqual(state, resp_json['state'])
     	self.assertEqual(stateToFE, resp_json['stateToFE'])
-        
-    # 测试solvePlus
+    	
+    # 测试solve
     # 前端已经完成输入合法性测试,因此只需测试算法是否能够跑通,若给出错误输入,解法不收敛
-    # TODO 判断能否给出正确解法
-    def test_index_plus_solve(self):
+    def test_guidance_solve(self):
         for s in stateSet_200:
-            resp = self.client.post('/indexPlus/solvePlus/', data={"state": json.dumps(s)}, dataType='json')
-    	    self.assertEqual(resp.status_code, 200)
-    	    print(resp.content)
+            resp = self.client.post('/index/guidance/solvePlus/', data={"state": json.dumps(s)}, dataType='json')
+            # 对于每一个move进行状态变换直到结束，判断最终状态是否被还原为state
+            for move in json.loads(resp.content)["moves"]:
+                s_rep = reOrderArray(s,FEToState)
+                newState_rep = copy.deepcopy(s_rep)
+                for i in range(len(rotateIdxs_new[move])):
+                    newState_rep[rotateIdxs_new[move][i]] = s_rep[rotateIdxs_old[move][i]]
+                newState = reOrderArray(newState_rep,stateToFE);
+                s = newState
+            self.assertEqual(s, state)
+    	    
+    	    
+    	    
         

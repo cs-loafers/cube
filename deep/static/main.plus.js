@@ -548,11 +548,15 @@ function nextState(moveTimeout=0) {
 		//convert to python representation
 		state_rep = reOrderArray(state,FEToState);
 		newState_rep = JSON.parse(JSON.stringify(state_rep));
-
+		
+        console.log(rotateIdxs_new[move].length)
+        
 		//swap stickers
 		for (var i = 0; i < rotateIdxs_new[move].length; i++) {
 			newState_rep[rotateIdxs_new[move][i]] = state_rep[rotateIdxs_old[move][i]];
 		}
+		
+		console.log(newState_rep)
 
 		// Change move highlight
 		if (moveTimeout != 0){ //check if nextState is used for first_state click, prev_state,etc.
@@ -562,6 +566,8 @@ function nextState(moveTimeout=0) {
 
 		//convert back to HTML representation
 		newState = reOrderArray(newState_rep,stateToFE);
+		
+//		console.log(newState)
 
 		//set new state
 		setStickerColors(newState);
@@ -606,10 +612,11 @@ function scrambleCube() {
 }
 
 function solveCube() {
+    console.log(state);
 	msgtxt.length = 0;
 	disableInput();
 	clearSoln();
-	document.getElementById("solution_text").innerText = "TESTING...";
+//	document.getElementById("solution_text").innerText = "TESTING...";
 	var stickers = document.getElementsByClassName("sticker");
 	// 魔方编码方式
 	//
@@ -719,9 +726,8 @@ function solveCube() {
 		}
 	}
 	var stickers_background = stickers_background_arr.join('');
-	// 对于平面展开图，从左上到右下的颜色简写
 	// stickers_background: ROBGWRYBOBWRGOGWGWRWYYORYGRWROGBOYGOYBBWBWRBGBROYYWOYG
-	var verify = verify_main(stickers_background); //verify_main是验证魔方的函数
+	var verify = verify_main(stickers_background); //TODO verify_main是验证魔方的函数,最好看一下具体逻辑
 	if (verify == 0) {
 		document.getElementById("solution_text").innerHTML = "SOLVING...";
 		$.ajax({
