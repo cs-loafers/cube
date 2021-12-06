@@ -549,7 +549,7 @@ function nextState(moveTimeout=0) {
 		state_rep = reOrderArray(state,FEToState);
 		newState_rep = JSON.parse(JSON.stringify(state_rep));
 		
-        console.log(rotateIdxs_new[move].length)
+        
         
 		//swap stickers
 		for (var i = 0; i < rotateIdxs_new[move].length; i++) {
