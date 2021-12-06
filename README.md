@@ -1,4 +1,4 @@
-# 魔方项目
+# 魔方辅助学习系统
 
 Refer to https://gitee.com/nwu_hq/cube
 
