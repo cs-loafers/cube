@@ -9,9 +9,7 @@ Refer to https://gitee.com/nwu_hq/cube
 1. 该项目使用操作系统为 **Linux发行版Ubuntu 16.04**
 2. 该项目的运行环境为 **python 2.7**
 3. 该项目使用的框架为 **Django 1.11**
-4. 项目依赖保存在 *requirement.txt* 文件中，下面会有说明。
-
-
+4. 项目依赖保存在 *requirement.txt* 文件中。
 
 ## 2.项目使用说明
 
@@ -25,35 +23,33 @@ cube$ pip install -r requirement.txt
 
 此过程需要较长时间，建议使用阿里云镜像库加快下载速度。
 
-### 2. 项目运行
+换源推荐：https://xiaopengzhen.blog.csdn.net/article/details/102953882
 
-当我们在准备阶段完成了项目依赖的导入以后，我们就可以直接运行我们的项目了，此过程就是*Django*的项目运行过程。
+### 2. 项目测试
 
-使用以下命令启动服务。需要到Django项目目录下。
+当完成了准备阶段的依赖导入以后，可以直接运行项目，也可以首先运行测试，检查目前环境配置是否正确。
+
+运行test脚本启动测试：
 
 ```bash
-cube$ cd deep 
-deep$ python manage.py runserver 0.0.0.0:8000 # 映射到8000端口
+cube$ bash test.sh
+```
+
+### 3. 项目运行
+
+运行start脚本启动服务，脚本将Django应用映射到本机8000端口。
+
+```bash
+cube$ bash start.sh
 ```
 
 在运行后就能看到以下命令行输出。
 
 ![初始化运行](pic/1.PNG)
 
-在本地浏览器中，我们输入网址：**localhost:8000/index**，由于在 *urls.py*中没有加入对于 **/** 的映射，所以无法使用 **localhost:8000/** 访问，此网站将显示404错误。
-
-我们就能看到魔方的界面，此界面魔方是一个已经复原的魔方。如下图所示
-
-
-
-
+在本地浏览器中，我们输入网址：**localhost:8000/index**，就能看到系统主界面。如下图所示
 
 ![index界面](pic/2.PNG)
-
-
-
-
-
 
 
 点击上图的**Scramble**按钮，就能看到一个打乱的魔方。**我们可以在图中旋转我们的魔方**。如下如所示
@@ -131,8 +127,6 @@ deep$ python manage.py runserver 0.0.0.0:8000 # 映射到8000端口
 
 ## 4. 其他
 
-Ubuntu下的换源推荐
-https://xiaopengzhen.blog.csdn.net/article/details/102953882
 
 运行项目以前下载django
 pip install django==1.11 -i https://pypi.tuna.tsinghua.edu.cn/simple
