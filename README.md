@@ -56,7 +56,7 @@ cube$ bash start.sh
 在本地浏览器中，我们输入网址：**localhost:8000/index**，就能看到系统主界面。如下图所示
 
 
-![index界面](pic/1.png)
+![index界面](documents/1.png)
 
 
 其中包含两个按钮，分别对应了两个界面。
