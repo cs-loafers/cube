@@ -1,3 +1,9 @@
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
 language: python
 python:
     - "2.7"
