@@ -1,9 +1,9 @@
 #coding:utf-8
 
 from django.test import TestCase, Client
-#from deep.views import reOrderArray
 import json
 import copy
+
 
 def reOrderArray(arr, indecies):
     temp = []
@@ -100,19 +100,37 @@ class viewTestCase(TestCase):
     	
     # 测试solve
     # 前端已经完成输入合法性测试,因此只需测试算法是否能够跑通,若给出错误输入,解法不收敛
-    def test_guidance_solve(self):
-        for s in stateSet_200:
-            resp = self.client.post('/index/guidance/solvePlus/', data={"state": json.dumps(s)}, dataType='json')
-            # 对于每一个move进行状态变换直到结束，判断最终状态是否被还原为state
-            for move in json.loads(resp.content)["moves"]:
-                s_rep = reOrderArray(s,FEToState)
-                newState_rep = copy.deepcopy(s_rep)
-                for i in range(len(rotateIdxs_new[move])):
-                    newState_rep[rotateIdxs_new[move][i]] = s_rep[rotateIdxs_old[move][i]]
-                newState = reOrderArray(newState_rep,stateToFE);
-                s = newState
-            self.assertEqual(s, state)
-    	    
-    	    
+#    def test_guidance_solve(self):
+#        for s in stateSet_200:
+#            resp = self.client.post('/index/guidance/solvePlus/', data={"state": json.dumps(s)}, dataType='json')
+#            # 对于每一个move进行状态变换直到结束，判断最终状态是否被还原为state
+#            for move in json.loads(resp.content)["moves"]:
+#                s_rep = reOrderArray(s,FEToState)
+#                newState_rep = copy.deepcopy(s_rep)
+#                for i in range(len(rotateIdxs_new[move])):
+#                    newState_rep[rotateIdxs_new[move][i]] = s_rep[rotateIdxs_old[move][i]]
+#                newState = reOrderArray(newState_rep,stateToFE);
+#                s = newState
+#            self.assertEqual(s, state)
+           
+            
+    def test_web(self):
+        import subprocess
+        import os
+        import sys
+        from selenium import webdriver
+        from time import sleep
+        
+        p = subprocess.Popen("bash start.sh", shell=True)
+        
+        driver = webdriver.Chrome()
+        driver.get("http://localhost:8000/index/")
+        sleep(3)
+        driver.find_element_by_id("scramble").click()
+#        driver.find_element_by_id("solve").click()
+
+        driver.quit()
+        
+        p.kill()
     	    
         

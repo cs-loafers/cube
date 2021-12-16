@@ -1,0 +1,17 @@
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+language: python
+python:
+    - "2.7"
+install:
+    - pip install -r requirements.txt
+before_script:    - export DISPLAY=:99.0
+    - sh -e /etc/init.d/xvfb start
+    - npm i -g npm@^3
+    - sleep 3
+script:
+    bash test.sh
