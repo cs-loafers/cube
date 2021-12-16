@@ -1,8 +1,17 @@
 #coding:utf-8
+
 from django.test import TestCase, Client
-from deep.views import reOrderArray
+#from deep.views import reOrderArray
 import json
 import copy
+
+def reOrderArray(arr, indecies):
+    temp = []
+    for i in range(len(indecies)):
+        index = indecies[i]
+        temp.append(arr[index])
+    return temp
+
 
 FEToState = [6, 3, 0, 7, 4, 1, 8, 5, 2, 15, 12, 9, 16, 13, 10, 17, 14, 11, 24, 21, 18, 25, 22, 19, 26, 23, 20, 33, 30, 27, 34, 31, 28, 35, 32, 29, 38, 41, 44, 37, 40, 43, 36, 39, 42, 51, 48, 45, 52, 49, 46, 53, 50, 47]
 legalMoves = ["U_-1", "U_1", "D_-1", "D_1", "L_-1", "L_1", "R_-1", "R_1", "B_-1", "B_1", "F_-1", "F_1"]
